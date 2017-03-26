@@ -6,9 +6,9 @@ package fr.esgi.projet.softwareneedsyou.api;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class tmpTest {
+public class TmpTest {
     @Test public void testTmpHasAGreeting() {
-        tmp classUnderTest = new tmp();
+        Tmp classUnderTest = new Tmp();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     }
 }
