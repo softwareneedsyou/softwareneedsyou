@@ -9,12 +9,12 @@
 project.group = 'fr.esgi.projet.softwareneedsyou'
 //project.version = '0.0.1'
 
+//allprojects  pour le projet actuel et les projets en dépendance
+//subprojects  pour tous les projets en dépendance
+
 allprojects {
     // Apply the java plugin to add support for Java
     apply plugin: 'java'
-
-    // Apply the application plugin to add support for building an application
-    apply plugin: 'application'
 
     // Support des IDEs
     //apply plugin: 'eclipse'
@@ -24,7 +24,7 @@ allprojects {
     apply plugin: 'findbugs'
     apply plugin: 'jacoco'
 
-    manifest.mainAttributes(provider: 'gradle')
+    //manifest.mainAttributes(provider: 'gradle')
 
     // On spécifie la version de Java à utiliser
     sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
@@ -32,6 +32,9 @@ allprojects {
 }
 
 project(':app') {
+    // Apply the application plugin to add support for building an application
+    apply plugin: 'application'
+
     version = '0.0.1-SNAPSHOT'
     description = 'The application'
     
@@ -39,6 +42,7 @@ project(':app') {
     mainClassName = 'fr.esgi.projet.softwareneedsyou.App'
 
     dependencies {
+        //compile fileTree(dir: 'libs', include: ['*.jar'])
         compile project(':api')
     }
 

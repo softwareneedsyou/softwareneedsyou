@@ -46,3 +46,5 @@ review les changemnets avant d'accepter le merge.
 
 ## Documentation
 
+### Gradle : Lsite des projets/modules
+Pour lister les projets ou moudles gradle : ```gradle projects```.
