@@ -29,6 +29,76 @@ allprojects {
     // On spécifie la version de Java à utiliser
     sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
     targetCompatibility = JavaVersion.VERSION_1_8 //1.8
+
+    // In this section you declare where to find the dependencies of your project
+    repositories {
+        // Use jcenter for resolving your dependencies.
+        jcenter()
+        // You can declare any Maven/Ivy/file repository here.
+        //mavenCentral()
+    }
+
+    ext {
+        lombockVersion = '1.16.+'
+
+        //Logging
+        // ...
+
+        //Testing
+        junitVersion = '4.+'
+    }
+
+    dependencies {
+        // This dependency is found on compile classpath of this component and consumers.
+        //compile 'com.google.guava:guava:20.0'
+
+        // Use JUnit test framework
+        testCompile "junit:junit:$junitVersion"
+        
+        compileOnly "org.projectlombok:lombok:$lombockVersion"
+    }
+
+    findbugs {
+        toolVersion = "3.0.1" //pour compactibilité jre 1.7
+        effort = "max"
+        reportLevel = "low"
+        ignoreFailures = true //sinon echec de la compilation
+        reportsDir = file("${buildDir}/findbugsReports") //$project.buildDir, default=build/reports/findbugs/
+    }
+
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    build.finalizedBy(jacocoTestReport) //pour exécuter automatique le test de couverture (avec junit) après la compilation
+
+    jacocoTestReport {
+        group = "Reporting"
+        description = "Générer un rapport de couverture de code (JAvaCOdeCOverage) après les tests"
+        additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+        reports {
+            xml.enabled false
+            csv.enabled false
+            html.enabled true
+            html.destination "${buildDir}/jacocoHtml"
+        }
+        doFirst {
+            sourceDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: ['**/tri/**Exception**'])
+            })
+            classDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: ['**/tri/**Exception**'])
+            })
+        }
+        afterEvaluate { //pas vraiment nécessaire avec doFirst
+            classDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: ['**/tri/**Exception**'])
+            })
+        }
+    }
 }
 
 project(':app') {
@@ -58,72 +128,3 @@ project(':api') {
     description = 'The shared API for the application'
 }
 
-// In this section you declare where to find the dependencies of your project
-repositories {
-    // Use jcenter for resolving your dependencies.
-    jcenter()
-    // You can declare any Maven/Ivy/file repository here.
-    //mavenCentral()
-}
-
-ext {
-    lombockVersion = '1.16.+'
-
-    //Logging
-    // ...
-
-    //Testing
-    junitVersion = '4.+'
-}
-
-dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
-    //compile 'com.google.guava:guava:20.0'
-
-    // Use JUnit test framework
-    testCompile "junit:junit:$junitVersion"
-    
-    compileOnly "org.projectlombok:lombok:$lombockVersion"
-}
-
-findbugs {
-    toolVersion = "3.0.1" //pour compactibilité jre 1.7
-    effort = "max"
-    reportLevel = "low"
-    ignoreFailures = true //sinon echec de la compilation
-    reportsDir = file("${buildDir}/findbugsReports") //$project.buildDir
-}
-
-tasks.withType(FindBugs) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
-
-build.finalizedBy(jacocoTestReport) //pour exécuter automatique le test de couverture (avec junit) après la compilation
-
-jacocoTestReport {
-    group = "Reporting"
-    description = "Générer un rapport de couverture de code (JAvaCOdeCOverage) après les tests"
-    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.enabled true
-        html.destination "${buildDir}/jacocoHtml"
-    }
-    doFirst {
-        sourceDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/tri/**Exception**'])
-        })
-        classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/tri/**Exception**'])
-        })
-    }
-    afterEvaluate { //pas vraiment nécessaire avec doFirst
-        classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/tri/**Exception**'])
-        })
-    }
-}
