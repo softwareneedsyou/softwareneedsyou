@@ -6,19 +6,45 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
-// Apply the java plugin to add support for Java
-apply plugin: 'java'
+project.group = 'fr.esgi.projet.softwareneedsyou'
+project.version = '0.0.1-SNAPSHOT'
 
-// Apply the application plugin to add support for building an application
-apply plugin: 'application'
+allprojects {
+    // Apply the java plugin to add support for Java
+    apply plugin: 'java'
 
-// Support des IDEs
-//apply plugin: 'eclipse'
-//apply plugin: 'idea'
+    // Apply the application plugin to add support for building an application
+    apply plugin: 'application'
 
-// Plugins de test
-apply plugin: 'findbugs'
-apply plugin: 'jacoco'
+    // Support des IDEs
+    //apply plugin: 'eclipse'
+    //apply plugin: 'idea'
+
+    // Plugins de test
+    apply plugin: 'findbugs'
+    apply plugin: 'jacoco'
+
+    manifest.mainAttributes(provider: 'gradle')
+
+    // On spécifie la version de Java à utiliser
+    sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
+    targetCompatibility = JavaVersion.VERSION_1_8 //1.8
+}
+
+project(':app') {
+    // Define the main class for the application
+    mainClassName = 'fr.esgi.projet.softwareneedsyou.App'
+
+    dependencies {
+        compile project(':api')
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class': "$mainClassName"
+        }
+    }
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -46,19 +72,6 @@ dependencies {
     testCompile "junit:junit:$junitVersion"
     
     compileOnly "org.projectlombok:lombok:$lombockVersion"
-}
-
-// Define the main class for the application
-mainClassName = 'fr.esgi.projet.softwareneedsyou.App'
-
-// On spécifie la version de Java à utiliser
-sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
-targetCompatibility = JavaVersion.VERSION_1_8 //1.8
-
-jar {
-    manifest {
-        attributes 'Main-Class': "$mainClassName"
-    }
 }
 
 findbugs {
