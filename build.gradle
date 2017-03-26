@@ -7,7 +7,7 @@
  */
 
 project.group = 'fr.esgi.projet.softwareneedsyou'
-project.version = '0.0.1-SNAPSHOT'
+//project.version = '0.0.1'
 
 allprojects {
     // Apply the java plugin to add support for Java
@@ -32,6 +32,9 @@ allprojects {
 }
 
 project(':app') {
+    version = '0.0.1-SNAPSHOT'
+    description = 'The application'
+    
     // Define the main class for the application
     mainClassName = 'fr.esgi.projet.softwareneedsyou.App'
 
@@ -44,6 +47,11 @@ project(':app') {
             attributes 'Main-Class': "$mainClassName"
         }
     }
+}
+
+project(':api') {
+    version = '0.0.1-SNAPSHOT'
+    description = 'The shared API for the application'
 }
 
 // In this section you declare where to find the dependencies of your project
