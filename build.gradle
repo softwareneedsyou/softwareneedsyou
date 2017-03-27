@@ -12,12 +12,14 @@ project.group = 'fr.esgi.projet.softwareneedsyou'
 //allprojects  pour le projet actuel et les projets en dépendance
 //subprojects  pour tous les projets en dépendance
 
-allprojects {
+subprojects {
     // Apply the java plugin to add support for Java
     apply plugin: 'java'
 
     // Support des IDEs
     //apply plugin: 'eclipse'
+    //tasks.eclipse.dependsOn cleanEclipse
+    //tasks.eclipseClasspath.dependsOn initProject
     //apply plugin: 'idea'
 
     // Plugins de test
@@ -56,6 +58,14 @@ allprojects {
         testCompile "junit:junit:$junitVersion"
         
         compileOnly "org.projectlombok:lombok:$lombockVersion"
+    }
+
+    test {
+        afterTest { desc, result ->
+            if(result.resultType  == TestResult.ResultType.FAILURE) {
+                logger.quiet("${result.resultType} : ${desc.name}(${desc.className}) -> ${result.exception.message}" )
+            }
+        }
     }
 
     findbugs {
@@ -127,4 +137,3 @@ project(':api') {
     version = '0.0.1-SNAPSHOT'
     description = 'The shared API for the application'
 }
-
