@@ -27,6 +27,8 @@ subprojects {
     apply plugin: 'jacoco'
 
     //manifest.mainAttributes(provider: 'gradle')
+    //appendix = archiveName
+    //archivesBaseName = "softwareneedsyou"
 
     // On spécifie la version de Java à utiliser
     sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
@@ -65,6 +67,16 @@ subprojects {
             if(result.resultType  == TestResult.ResultType.FAILURE) {
                 logger.quiet("${result.resultType} : ${desc.name}(${desc.className}) -> ${result.exception.message}" )
             }
+        }
+    }
+
+    task release(description: 'fige une version avant son déploiement') {}
+ 
+    gradle.taskGraph.whenReady {taskGraph ->
+        if (taskGraph.hasTask(release)) {
+            version = version
+        } else {
+            version += "-SNAPSHOT"
         }
     }
 
@@ -115,7 +127,7 @@ project(':app') {
     // Apply the application plugin to add support for building an application
     apply plugin: 'application'
 
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.1'
     description = 'The application'
     
     // Define the main class for the application
@@ -134,6 +146,6 @@ project(':app') {
 }
 
 project(':api') {
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.1'
     description = 'The shared API for the application'
 }

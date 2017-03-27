@@ -48,3 +48,6 @@ review les changemnets avant d'accepter le merge.
 
 ### Gradle : Lsite des projets/modules
 Pour lister les projets ou moudles gradle : ```gradle projects```.
+
+#### Gradle : libérer une release
+Pour ```compile``` ou ```install``` une relase, il suffit d'ajouter ```release``` dans les tâches de gradle.
