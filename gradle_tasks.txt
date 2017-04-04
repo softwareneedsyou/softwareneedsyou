@@ -1,0 +1,91 @@
+------------------------------------------------------------
+All tasks runnable from root project
+------------------------------------------------------------
+
+Application tasks
+-----------------
+app:run - Runs this project as a JVM application
+
+Build tasks
+-----------
+assemble - Assembles the outputs of this project.
+build - Assembles and tests this project.
+buildDependents - Assembles and tests this project and all projects that depend
+on it.
+buildNeeded - Assembles and tests this project and all projects it depends on.
+classes - Assembles main classes.
+clean - Deletes the build directory.
+jar - Assembles a jar archive containing the main classes.
+testClasses - Assembles test classes.
+
+Build Setup tasks
+-----------------
+init - Initializes a new Gradle build. [incubating]
+wrapper - Generates Gradle wrapper files. [incubating]
+
+Distribution tasks
+------------------
+app:assembleDist - Assembles the main distributions
+app:distTar - Bundles the project as a distribution.
+app:distZip - Bundles the project as a distribution.
+app:installDist - Installs the project as a distribution as-is.
+
+Documentation tasks
+-------------------
+javadoc - Generates Javadoc API documentation for the main source code.
+
+Help tasks
+----------
+buildEnvironment - Displays all buildscript dependencies declared in root project 'softwareneedsyou'.
+api:buildEnvironment - Displays all buildscript dependencies declared in project ':api'.
+app:buildEnvironment - Displays all buildscript dependencies declared in project ':app'.
+components - Displays the components produced by root project 'softwareneedsyou'. [incubating]
+api:components - Displays the components produced by project ':api'. [incubating]
+app:components - Displays the components produced by project ':app'. [incubating]
+dependencies - Displays all dependencies declared in root project 'softwareneedsyou'.
+api:dependencies - Displays all dependencies declared in project ':api'.
+app:dependencies - Displays all dependencies declared in project ':app'.
+dependencyInsight - Displays the insight into a specific dependency in root project 'softwareneedsyou'.
+api:dependencyInsight - Displays the insight into a specific dependency in project ':api'.
+app:dependencyInsight - Displays the insight into a specific dependency in project ':app'.
+dependentComponents - Displays the dependent components of components in root project 'softwareneedsyou'. [incubating]
+api:dependentComponents - Displays the dependent components of components in project ':api'. [incubating]
+app:dependentComponents - Displays the dependent components of components in project ':app'. [incubating]
+help - Displays a help message.
+model - Displays the configuration model of root project 'softwareneedsyou'. [incubating]
+api:model - Displays the configuration model of project ':api'. [incubating]
+app:model - Displays the configuration model of project ':app'. [incubating]
+projects - Displays the sub-projects of root project 'softwareneedsyou'.
+api:projects - Displays the sub-projects of project ':api'.
+app:projects - Displays the sub-projects of project ':app'.
+properties - Displays the properties of root project 'softwareneedsyou'.
+api:properties - Displays the properties of project ':api'.
+app:properties - Displays the properties of project ':app'.
+tasks - Displays the tasks runnable from root project 'softwareneedsyou' (some of the displayed tasks may belong to subprojects).
+api:tasks - Displays the tasks runnable from project ':api'.
+app:tasks - Displays the tasks runnable from project ':app'.
+
+Reporting tasks
+---------------
+jacocoTestReport - GÚnÚrer un rapport de couverture de code (JAvaCOdeCOverage) aprÞs les tests
+
+Verification tasks
+------------------
+check - Runs all checks.
+jacocoTestCoverageVerification - Verifies code coverage metrics based on specified rules for the test task.
+test - Runs the unit tests.
+
+Other tasks
+-----------
+compileJava - Compiles main Java source.
+compileTestJava - Compiles test Java source.
+findbugsMain - Run FindBugs analysis for main classes
+findbugsTest - Run FindBugs analysis for test classes
+processResources - Processes main resources.
+processTestResources - Processes test resources.
+release - fige une version avant son dÚploiement
+sourcesJar - Assembles a jar archive containing the main source classes.
+sourcesTestJar - Assembles a jar archive containing the test source classes.
+app:startScripts - Creates OS specific scripts to run the project as a JVM appli
+cation.
+testsJar - Assembles a jar archive containing the test classes.

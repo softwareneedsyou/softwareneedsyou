@@ -7,7 +7,6 @@
  */
 
 project.group = 'fr.esgi.projet.softwareneedsyou'
-//project.version = '0.0.1'
 
 //allprojects  pour le projet actuel et les projets en dépendance
 //subprojects  pour tous les projets en dépendance
@@ -62,12 +61,44 @@ subprojects {
         compileOnly "org.projectlombok:lombok:$lombockVersion"
     }
 
+    jar {
+        manifest {
+            attributes 'Implementation-Title': project.name,
+                'Implementation-Version': "$version"
+        }
+    }
+
     test {
         afterTest { desc, result ->
             if(result.resultType  == TestResult.ResultType.FAILURE) {
                 logger.quiet("${result.resultType} : ${desc.name}(${desc.className}) -> ${result.exception.message}" )
             }
         }
+    }
+
+    task testsJar(type: Jar, dependsOn: testClasses) {
+        description = 'Assembles a jar archive containing the test classes.'
+        classifier = 'tests'
+        //from sourceSets.test.classes
+        from sourceSets.test.output
+    }
+
+    task sourcesTestJar(type: Jar /*, dependsOn: testClasses*/) {
+        description = 'Assembles a jar archive containing the test source classes.'
+        classifier = 'test-sources'
+        from sourceSets.test.allSource
+    }
+
+    task sourcesJar(type: Jar /*, dependsOn: classes*/) {
+        description = 'Assembles a jar archive containing the main source classes.'
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives testsJar
+        archives sourcesTestJar
     }
 
     task release(description: 'fige une version avant son déploiement') {}
