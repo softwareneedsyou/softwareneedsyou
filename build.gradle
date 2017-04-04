@@ -122,30 +122,3 @@ subprojects {
         }
     }
 }
-
-project(':app') {
-    // Apply the application plugin to add support for building an application
-    apply plugin: 'application'
-
-    version = '0.0.1'
-    description = 'The application'
-    
-    // Define the main class for the application
-    mainClassName = 'fr.esgi.projet.softwareneedsyou.App'
-
-    dependencies {
-        //compile fileTree(dir: 'libs', include: ['*.jar'])
-        compile project(':api')
-    }
-
-    jar {
-        manifest {
-            attributes 'Main-Class': "$mainClassName"
-        }
-    }
-}
-
-project(':api') {
-    version = '0.0.1'
-    description = 'The shared API for the application'
-}
