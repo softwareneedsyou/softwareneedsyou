@@ -67,3 +67,8 @@ Pour compiler et tester le projet : `gradle build`, puis `gradle run` pour lance
 
 ### Modification de gradle
 Lors de modifications de gradle, vérifier la configuration avec `gradle` ou `gradle help` (aucune compilation).
+
+## Documentation
+### Javadoc
+La génération de la javadoc se fait par les commandes : `gradle javadoc testJavadoc`.
+L'emplacement de la documentation est déplacée dans `/docs` pour être utilisable directement avec *Github Pages*.
