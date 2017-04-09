@@ -6,7 +6,29 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    repositories {
+      jcenter()
+      maven {
+        url "https://plugins.gradle.org/m2/"
+      }
+    }
+    dependencies {
+      classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.3"
+    }
+}
+plugins {
+    id "cz.malohlava" version "1.0.2"
+}
+apply plugin: "com.dorongold.task-tree"
+
 project.group = 'fr.esgi.projet.softwareneedsyou'
+
+def CUSTOM_GROUP = 'Custom' //tasks ... on console
+configure(taskTree) {
+    group = CUSTOM_GROUP
+    description 'Affiche l\'arbre des dépendances de la commande qui suit'
+}
 
 //allprojects  pour le projet actuel et les projets en dépendance
 //subprojects  pour tous les projets en dépendance
@@ -93,6 +115,14 @@ subprojects {
         description = 'Assembles a jar archive containing the main source classes.'
         classifier = 'sources'
         from sourceSets.main.allSource
+    }
+
+    task listJars {
+        group CUSTOM_GROUP
+        description 'Liste tout les jars attachés à la config de compilation.'
+        doLast {
+            configurations.compile.each { File file -> println file.name }
+        }
     }
 
     artifacts {

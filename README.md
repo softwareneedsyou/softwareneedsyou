@@ -56,6 +56,12 @@ gradle <task(s)> release
 Pour voir la liste de toutes les tâches possible avec gradle : `gradle tasks --all`.
 Les tâches de la forme `sub:task` est une tâche s'appliquant qu'au sous-module du même nom.
 
+#### Extra tasks Gradle
+* Liste des jars du projet lors de la compilation : `gradle -q listJars`
+* Debuggage : `gradle :<task> :taskTree` pour voir les dépendances des tâches.
+Un graph au format dot est aussi généré lors de la tâche `build` dans `/build/reports/visteg.dot`.
+*Utilisation d'un plugin pour avoir cette fonctionnalité.*
+
 ### Compilation
 Pour compiler et tester le projet : `gradle build`, puis `gradle run` pour lancer l'application.
 
