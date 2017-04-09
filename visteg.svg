@@ -1,0 +1,202 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="913pt" height="500pt" viewBox="0.00 0.00 913.00 500.00" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs xmlns="http://www.w3.org/1999/xhtml"><style type="text/css"><![CDATA[
+button { margin: 4px 5px 4px 4px; cursor: pointer; font-size: 70%; }]]></style></defs>
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 496)">
+<title>compile</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-496 910,-496 910,5 -4,5"/>
+<!-- :api:clean -->
+<g id="node1" class="node"><title>:api:clean</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="306.134,-474 278.067,-492 221.933,-492 193.866,-474 221.933,-456 278.067,-456 306.134,-474"/>
+<text text-anchor="middle" x="250" y="-469.8" font-family="Times,serif" font-size="14.00">:api:clean</text>
+</g>
+<!-- :api:build -->
+<g id="node2" class="node"><title>:api:build</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="435.235,-474 407.617,-492 352.383,-492 324.765,-474 352.383,-456 407.617,-456 435.235,-474"/>
+<text text-anchor="middle" x="380" y="-469.8" font-family="Times,serif" font-size="14.00">:api:build</text>
+</g>
+<!-- :api:assemble -->
+<g id="node4" class="node"><title>:api:assemble</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="557.151,-420 464.849,-420 464.849,-384 557.151,-384 557.151,-420"/>
+<text text-anchor="middle" x="511" y="-397.8" font-family="Times,serif" font-size="14.00">:api:assemble</text>
+</g>
+<!-- :api:build&#45;&gt;:api:assemble -->
+<g id="edge2" class="edge"><title>:api:build-&gt;:api:assemble</title>
+<path fill="none" stroke="#3288bd" d="M409.726,-457.116C427.582,-447.574 450.555,-435.299 470.106,-424.852"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="471.933,-427.844 479.103,-420.044 468.634,-421.67 471.933,-427.844"/>
+</g>
+<!-- :api:check -->
+<g id="node6" class="node"><title>:api:check</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="336.152,-420 263.848,-420 263.848,-384 336.152,-384 336.152,-420"/>
+<text text-anchor="middle" x="300" y="-397.8" font-family="Times,serif" font-size="14.00">:api:check</text>
+</g>
+<!-- :api:build&#45;&gt;:api:check -->
+<g id="edge4" class="edge"><title>:api:build-&gt;:api:check</title>
+<path fill="none" stroke="#3288bd" d="M360.225,-455.697C350.246,-446.965 337.989,-436.24 327.143,-426.75"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="329.378,-424.055 319.548,-420.104 324.769,-429.323 329.378,-424.055"/>
+</g>
+<!-- :api:jar -->
+<g id="node8" class="node"><title>:api:jar</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="692.243,-268 637.757,-268 637.757,-232 692.243,-232 692.243,-268"/>
+<text text-anchor="middle" x="665" y="-245.8" font-family="Times,serif" font-size="14.00">:api:jar</text>
+</g>
+<!-- :api:assemble&#45;&gt;:api:jar -->
+<g id="edge6" class="edge"><title>:api:assemble-&gt;:api:jar</title>
+<path fill="none" stroke="#3288bd" d="M509.671,-383.83C508.983,-362.634 511.043,-326.623 530,-304 558.466,-270.028 581.79,-284.315 623,-268 624.609,-267.363 626.252,-266.71 627.91,-266.048"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="629.484,-269.188 637.462,-262.216 626.877,-262.691 629.484,-269.188"/>
+</g>
+<!-- :api:sourcesJar -->
+<g id="node10" class="node"><title>:api:sourcesJar</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="691.078,-318.544 691.078,-333.456 647.684,-344 586.316,-344 542.922,-333.456 542.922,-318.544 586.316,-308 647.684,-308 691.078,-318.544"/>
+<polygon fill="none" stroke="#3288bd" points="695.08,-315.4 695.08,-336.6 648.164,-348 585.836,-348 538.92,-336.6 538.92,-315.4 585.836,-304 648.164,-304 695.08,-315.4"/>
+<text text-anchor="middle" x="617" y="-321.8" font-family="Times,serif" font-size="14.00">:api:sourcesJar</text>
+</g>
+<!-- :api:assemble&#45;&gt;:api:sourcesJar -->
+<g id="edge8" class="edge"><title>:api:assemble-&gt;:api:sourcesJar</title>
+<path fill="none" stroke="#3288bd" d="M535.585,-383.837C548.366,-374.914 564.278,-363.806 578.635,-353.783"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="580.677,-356.626 586.873,-348.032 576.67,-350.887 580.677,-356.626"/>
+</g>
+<!-- :api:sourcesTestJar -->
+<g id="node12" class="node"><title>:api:sourcesTestJar</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="901.071,-318.544 901.071,-333.456 847.137,-344 770.863,-344 716.929,-333.456 716.929,-318.544 770.863,-308 847.137,-308 901.071,-318.544"/>
+<polygon fill="none" stroke="#3288bd" points="905.072,-315.251 905.072,-336.749 847.525,-348 770.475,-348 712.928,-336.749 712.928,-315.251 770.475,-304 847.525,-304 905.072,-315.251"/>
+<text text-anchor="middle" x="809" y="-321.8" font-family="Times,serif" font-size="14.00">:api:sourcesTestJar</text>
+</g>
+<!-- :api:assemble&#45;&gt;:api:sourcesTestJar -->
+<g id="edge10" class="edge"><title>:api:assemble-&gt;:api:sourcesTestJar</title>
+<path fill="none" stroke="#3288bd" d="M557.236,-389.519C604.659,-377.742 679.161,-359.242 734.836,-345.417"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="735.789,-348.786 744.651,-342.979 734.102,-341.993 735.789,-348.786"/>
+</g>
+<!-- :api:testsJar -->
+<g id="node14" class="node"><title>:api:testsJar</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="483.068,-344 400.932,-344 400.932,-308 483.068,-308 483.068,-344"/>
+<text text-anchor="middle" x="442" y="-321.8" font-family="Times,serif" font-size="14.00">:api:testsJar</text>
+</g>
+<!-- :api:assemble&#45;&gt;:api:testsJar -->
+<g id="edge12" class="edge"><title>:api:assemble-&gt;:api:testsJar</title>
+<path fill="none" stroke="#3288bd" d="M494.997,-383.837C486.027,-374.217 474.688,-362.057 464.803,-351.456"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="467.296,-348.997 457.917,-344.07 462.176,-353.771 467.296,-348.997"/>
+</g>
+<!-- :api:findbugsMain -->
+<g id="node16" class="node"><title>:api:findbugsMain</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="118.573,-268 -0.573485,-268 -0.573485,-232 118.573,-232 118.573,-268"/>
+<text text-anchor="middle" x="59" y="-245.8" font-family="Times,serif" font-size="14.00">:api:findbugsMain</text>
+</g>
+<!-- :api:check&#45;&gt;:api:findbugsMain -->
+<g id="edge14" class="edge"><title>:api:check-&gt;:api:findbugsMain</title>
+<path fill="none" stroke="#3288bd" d="M263.741,-387.418C239.789,-377.801 208.118,-363.833 182,-348 146.271,-326.341 109.127,-295.744 85.1343,-274.737"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="87.3329,-272.009 77.5229,-268.007 82.6962,-277.253 87.3329,-272.009"/>
+</g>
+<!-- :api:findbugsTest -->
+<g id="node18" class="node"><title>:api:findbugsTest</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="304.489,-344 191.511,-344 191.511,-308 304.489,-308 304.489,-344"/>
+<text text-anchor="middle" x="248" y="-321.8" font-family="Times,serif" font-size="14.00">:api:findbugsTest</text>
+</g>
+<!-- :api:check&#45;&gt;:api:findbugsTest -->
+<g id="edge16" class="edge"><title>:api:check-&gt;:api:findbugsTest</title>
+<path fill="none" stroke="#3288bd" d="M287.939,-383.837C281.376,-374.497 273.131,-362.763 265.839,-352.386"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="268.608,-350.24 259.995,-344.07 262.881,-354.264 268.608,-350.24"/>
+</g>
+<!-- :api:test -->
+<g id="node20" class="node"><title>:api:test</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="383.246,-344 322.754,-344 322.754,-308 383.246,-308 383.246,-344"/>
+<text text-anchor="middle" x="353" y="-321.8" font-family="Times,serif" font-size="14.00">:api:test</text>
+</g>
+<!-- :api:check&#45;&gt;:api:test -->
+<g id="edge18" class="edge"><title>:api:check-&gt;:api:test</title>
+<path fill="none" stroke="#3288bd" d="M312.292,-383.837C318.982,-374.497 327.386,-362.763 334.818,-352.386"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="337.797,-354.238 340.774,-344.07 332.106,-350.162 337.797,-354.238"/>
+</g>
+<!-- :api:classes -->
+<g id="node22" class="node"><title>:api:classes</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="281.318,-116 202.682,-116 202.682,-80 281.318,-80 281.318,-116"/>
+<text text-anchor="middle" x="242" y="-93.8" font-family="Times,serif" font-size="14.00">:api:classes</text>
+</g>
+<!-- :api:jar&#45;&gt;:api:classes -->
+<g id="edge20" class="edge"><title>:api:jar-&gt;:api:classes</title>
+<path fill="none" stroke="#3288bd" d="M662.724,-231.851C658.803,-209.63 648.562,-171.44 623,-152 571.88,-113.122 382.508,-102.746 291.483,-99.9899"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="291.506,-96.4892 281.411,-99.704 291.307,-103.486 291.506,-96.4892"/>
+</g>
+<!-- :api:testClasses -->
+<g id="node24" class="node"><title>:api:testClasses</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="404.238,-268 301.762,-268 301.762,-232 404.238,-232 404.238,-268"/>
+<text text-anchor="middle" x="353" y="-245.8" font-family="Times,serif" font-size="14.00">:api:testClasses</text>
+</g>
+<!-- :api:testsJar&#45;&gt;:api:testClasses -->
+<g id="edge22" class="edge"><title>:api:testsJar-&gt;:api:testClasses</title>
+<path fill="none" stroke="#3288bd" d="M421.358,-307.837C409.451,-297.937 394.309,-285.346 381.303,-274.533"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="383.457,-271.772 373.53,-268.07 378.982,-277.155 383.457,-271.772"/>
+</g>
+<!-- :api:findbugsMain&#45;&gt;:api:classes -->
+<g id="edge24" class="edge"><title>:api:findbugsMain-&gt;:api:classes</title>
+<path fill="none" stroke="#3288bd" d="M68.5667,-231.975C81.0928,-210.929 104.806,-175.073 133,-152 150.853,-137.389 173.407,-125.572 193.36,-116.836"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="194.771,-120.039 202.615,-112.918 192.042,-113.593 194.771,-120.039"/>
+</g>
+<!-- :api:findbugsTest&#45;&gt;:api:classes -->
+<g id="edge26" class="edge"><title>:api:findbugsTest-&gt;:api:classes</title>
+<path fill="none" stroke="#3288bd" d="M232.463,-307.821C212.528,-284.5 178.973,-240.592 166,-196 160.537,-177.223 156.954,-169.337 166,-152 172.467,-139.606 183.302,-129.519 194.794,-121.601"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="196.68,-124.549 203.224,-116.217 192.913,-118.649 196.68,-124.549"/>
+</g>
+<!-- :api:findbugsTest&#45;&gt;:api:testClasses -->
+<g id="edge28" class="edge"><title>:api:findbugsTest-&gt;:api:testClasses</title>
+<path fill="none" stroke="#3288bd" d="M272.353,-307.837C286.666,-297.75 304.941,-284.87 320.474,-273.923"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="322.621,-276.692 328.779,-268.07 318.589,-270.97 322.621,-276.692"/>
+</g>
+<!-- :api:test&#45;&gt;:api:classes -->
+<g id="edge30" class="edge"><title>:api:test-&gt;:api:classes</title>
+<path fill="none" stroke="#3288bd" d="M383.146,-308.777C446.446,-274.678 587.523,-198.491 589,-196 598.975,-179.18 601.741,-166.835 589,-152 551.274,-108.075 378.362,-100.157 291.744,-98.9938"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="291.661,-95.4927 281.623,-98.8834 291.584,-102.492 291.661,-95.4927"/>
+</g>
+<!-- :api:test&#45;&gt;:api:testClasses -->
+<g id="edge32" class="edge"><title>:api:test-&gt;:api:testClasses</title>
+<path fill="none" stroke="#3288bd" d="M353,-307.837C353,-299.058 353,-288.163 353,-278.267"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="356.5,-278.07 353,-268.07 349.5,-278.07 356.5,-278.07"/>
+</g>
+<!-- :api:compileJava -->
+<g id="node31" class="node"><title>:api:compileJava</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="217.186,-14.5442 217.186,-29.4558 169.042,-40 100.958,-40 52.8143,-29.4558 52.8143,-14.5442 100.958,-4 169.042,-4 217.186,-14.5442"/>
+<polygon fill="none" stroke="#3288bd" points="221.157,-11.3205 221.157,-32.6795 169.469,-44 100.531,-44 48.8425,-32.6795 48.8425,-11.3205 100.531,-7.10543e-15 169.469,0 221.157,-11.3205"/>
+<text text-anchor="middle" x="135" y="-17.8" font-family="Times,serif" font-size="14.00">:api:compileJava</text>
+</g>
+<!-- :api:classes&#45;&gt;:api:compileJava -->
+<g id="edge34" class="edge"><title>:api:classes-&gt;:api:compileJava</title>
+<path fill="none" stroke="#3288bd" d="M217.183,-79.8369C204.281,-70.9141 188.22,-59.8061 173.727,-49.7833"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="175.627,-46.8417 165.411,-44.0322 171.645,-52.599 175.627,-46.8417"/>
+</g>
+<!-- :api:processResources -->
+<g id="node33" class="node"><title>:api:processResources</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="453.255,-14.5442 453.255,-29.4558 392.184,-40 305.816,-40 244.745,-29.4558 244.745,-14.5442 305.816,-4 392.184,-4 453.255,-14.5442"/>
+<polygon fill="none" stroke="#3288bd" points="457.233,-11.1725 457.233,-32.8275 392.523,-44 305.477,-44 240.767,-32.8275 240.767,-11.1725 305.477,-7.10543e-15 392.523,0 457.233,-11.1725"/>
+<text text-anchor="middle" x="349" y="-17.8" font-family="Times,serif" font-size="14.00">:api:processResources</text>
+</g>
+<!-- :api:classes&#45;&gt;:api:processResources -->
+<g id="edge36" class="edge"><title>:api:classes-&gt;:api:processResources</title>
+<path fill="none" stroke="#3288bd" d="M266.817,-79.8369C279.719,-70.9141 295.78,-59.8061 310.273,-49.7833"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="312.355,-52.599 318.589,-44.0322 308.373,-46.8417 312.355,-52.599"/>
+</g>
+<!-- :api:compileTestJava -->
+<g id="node35" class="node"><title>:api:compileTestJava</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="309.223,-192 174.777,-192 174.777,-156 309.223,-156 309.223,-192"/>
+<text text-anchor="middle" x="242" y="-169.8" font-family="Times,serif" font-size="14.00">:api:compileTestJava</text>
+</g>
+<!-- :api:testClasses&#45;&gt;:api:compileTestJava -->
+<g id="edge38" class="edge"><title>:api:testClasses-&gt;:api:compileTestJava</title>
+<path fill="none" stroke="#3288bd" d="M327.255,-231.837C311.985,-221.657 292.448,-208.632 275.929,-197.619"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="277.867,-194.705 267.605,-192.07 273.984,-200.529 277.867,-194.705"/>
+</g>
+<!-- :api:processTestResources -->
+<g id="node37" class="node"><title>:api:processTestResources</title>
+<polygon fill="#3288bd" stroke="#3288bd" points="576.244,-166.544 576.244,-181.456 504.635,-192 403.365,-192 331.756,-181.456 331.756,-166.544 403.365,-156 504.635,-156 576.244,-166.544"/>
+<polygon fill="none" stroke="#3288bd" points="580.226,-163.088 580.226,-184.912 504.925,-196 403.075,-196 327.774,-184.912 327.774,-163.088 403.075,-152 504.925,-152 580.226,-163.088"/>
+<text text-anchor="middle" x="454" y="-169.8" font-family="Times,serif" font-size="14.00">:api:processTestResources</text>
+</g>
+<!-- :api:testClasses&#45;&gt;:api:processTestResources -->
+<g id="edge40" class="edge"><title>:api:testClasses-&gt;:api:processTestResources</title>
+<path fill="none" stroke="#3288bd" d="M376.425,-231.837C388.49,-222.998 403.482,-212.014 417.06,-202.065"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="419.296,-204.766 425.294,-196.032 415.159,-199.119 419.296,-204.766"/>
+</g>
+<!-- :api:compileTestJava&#45;&gt;:api:classes -->
+<g id="edge42" class="edge"><title>:api:compileTestJava-&gt;:api:classes</title>
+<path fill="none" stroke="#3288bd" d="M242,-155.837C242,-147.058 242,-136.163 242,-126.267"/>
+<polygon fill="#3288bd" stroke="#3288bd" points="245.5,-126.07 242,-116.07 238.5,-126.07 245.5,-126.07"/>
+</g>
+</g>
+</svg>
