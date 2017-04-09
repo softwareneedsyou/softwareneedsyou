@@ -254,4 +254,11 @@ subprojects {
             })
         }
     }
+
+    task prepareGit {
+        group = CUSTOM_GROUP //BasePlugin.BUILD_GROUP // Or use 'build'
+        description = 'Prépare le dépôt git avant commit'
+        dependsOn javadoc
+        dependsOn testJavadoc
+    }
 }

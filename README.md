@@ -72,3 +72,14 @@ Lors de modifications de gradle, vérifier la configuration avec `gradle` ou `gr
 ### Javadoc
 La génération de la javadoc se fait par les commandes : `gradle javadoc testJavadoc`.
 L'emplacement de la documentation est déplacée dans `/docs` pour être utilisable directement avec *Github Pages*.
+
+### Git Hook
+Il est nécessaire de configurer son git lors du développement du projet pour automatiser certaines tâches et éviter les oublies.
+
+#### Pré-commit
+Il faut ajouter manuellement le(s) hook(s) dans git en local.
+Pour cela, il suffit de lancer le script `install` dans le dossier `scripts` (`.bat` pour Windows et `.sh` pour Unix).
+Le script est à lancer en tant qu'**administrateur** sous Windows.
+
+Le `pre-commit` s'occupe de :
+* générer la documentation et ajouter les modifications
