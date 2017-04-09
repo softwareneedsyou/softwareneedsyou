@@ -78,6 +78,9 @@ subprojects {
     }
 
     ext {
+        docDir = "${rootProject.projectDir}/docs/${project.name}"
+
+        //General
         lombockVersion = '1.16.+'
 
         //Logging
@@ -143,10 +146,57 @@ subprojects {
         }
     }
 
+    task javadocClean(type: Delete) {
+        group 'documentation'
+        description 'Deletes the (java)doc directory.'
+        delete docDir + "/javadoc"
+        //followSymlinks = true
+    }
+    javadoc.dependsOn javadocClean
+
+    javadoc.destinationDir = file(docDir + "/javadoc")
+    //${projectDir}/docs/javadoc
+
+    task testJavadocClean(type: Delete) {
+        group 'documentation'
+        description 'Deletes the test (java)doc directory.'
+        delete docDir + "/testjavadoc"
+        //followSymlinks = true
+    }
+
+    // creating javadoc task for test code
+    task testJavadoc(type: Javadoc, dependsOn: testJavadocClean) {
+        group 'documentation'
+        description 'Generates Javadoc API documentation for the test source code.'
+        source = sourceSets.test.allJava
+        classpath = sourceSets.test.compileClasspath
+        // if not changed the destinationDir, the javadoc for production code is overridden.
+        destinationDir = file(docDir + "/testjavadoc")
+        //options.linkSource true
+        //options.links("http://docs.oracle.com/javase/8/docs/api/")
+        //failOnError false
+    }
+    
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        group 'documentation'
+        description 'Assembles a jar archive containing the main javadoc.'
+        classifier 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    task testJavadocJar(type: Jar, dependsOn: testJavadoc) {
+        group 'documentation'
+        description 'Assembles a jar archive containing the test javadoc.'
+        classifier 'test-javadoc'
+        from testJavadoc.destinationDir
+    }
+
     artifacts {
         archives sourcesJar
+        archives javadocJar
         archives testsJar
         archives sourcesTestJar
+        archives testJavadocJar
     }
 
     task release {
