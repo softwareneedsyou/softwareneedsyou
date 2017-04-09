@@ -25,14 +25,16 @@ apply plugin: "com.dorongold.task-tree"
 project.group = 'fr.esgi.projet.softwareneedsyou'
 
 def CUSTOM_GROUP = 'Custom' //tasks ... on console
-configure(taskTree) {
-    group = CUSTOM_GROUP
-    description 'Affiche l\'arbre des dépendances de la commande qui suit'
+
+// pour le projet actuel et les projets en dépendance
+allprojects {
+    configure(taskTree) {
+        group = CUSTOM_GROUP
+        description 'Affiche l\'arbre des dépendances de la commande qui suit'
+    }
 }
 
-//allprojects  pour le projet actuel et les projets en dépendance
-//subprojects  pour tous les projets en dépendance
-
+// pour tous les projets en dépendance
 subprojects {
     // Apply the java plugin to add support for Java
     apply plugin: 'java'
@@ -42,6 +44,12 @@ subprojects {
     //tasks.eclipse.dependsOn cleanEclipse
     //tasks.eclipseClasspath.dependsOn initProject
     //apply plugin: 'idea'
+    /*idea {
+        project {
+            jdkName = jdkLevel
+            languageLevel = jdkLevel
+        }
+    }*/
 
     // Plugins de test
     apply plugin: 'findbugs'
@@ -54,6 +62,12 @@ subprojects {
     // On spécifie la version de Java à utiliser
     sourceCompatibility = JavaVersion.VERSION_1_8 //1.8
     targetCompatibility = JavaVersion.VERSION_1_8 //1.8
+    
+    tasks.withType(JavaCompile) {
+        //targetCompatibility = jdkLevel
+        //sourceCompatibility = jdkLevel
+        options.encoding = 'UTF-8'
+    }
 
     // In this section you declare where to find the dependencies of your project
     repositories {
@@ -81,6 +95,7 @@ subprojects {
         testCompile "junit:junit:$junitVersion"
         
         compileOnly "org.projectlombok:lombok:$lombockVersion"
+        //compile 'com.google.code.findbugs:annotations:3.0.1'
     }
 
     jar {
@@ -99,6 +114,7 @@ subprojects {
     }
 
     task testsJar(type: Jar, dependsOn: testClasses) {
+        group BasePlugin.BUILD_GROUP
         description = 'Assembles a jar archive containing the test classes.'
         classifier = 'tests'
         //from sourceSets.test.classes
@@ -106,12 +122,14 @@ subprojects {
     }
 
     task sourcesTestJar(type: Jar /*, dependsOn: testClasses*/) {
+        group = CUSTOM_GROUP
         description = 'Assembles a jar archive containing the test source classes.'
         classifier = 'test-sources'
         from sourceSets.test.allSource
     }
 
     task sourcesJar(type: Jar /*, dependsOn: classes*/) {
+        group = CUSTOM_GROUP
         description = 'Assembles a jar archive containing the main source classes.'
         classifier = 'sources'
         from sourceSets.main.allSource
@@ -131,7 +149,10 @@ subprojects {
         archives sourcesTestJar
     }
 
-    task release(description: 'fige une version avant son déploiement') {}
+    task release {
+        group CUSTOM_GROUP
+        description 'fige une version avant son déploiement'
+    }
  
     gradle.taskGraph.whenReady {taskGraph ->
         if (taskGraph.hasTask(release)) {
@@ -150,6 +171,7 @@ subprojects {
     }
 
     tasks.withType(FindBugs) {
+        group = 'Reporting'
         reports {
             xml.enabled = false
             html.enabled = true
