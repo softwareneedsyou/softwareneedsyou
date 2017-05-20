@@ -1,0 +1,7 @@
+machine:
+    timezone: Europe/Paris
+    java:
+        version: openjdk8
+checkout:
+    post:
+        - gradle sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=softwareneedsyou-github -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
