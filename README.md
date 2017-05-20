@@ -1,5 +1,5 @@
 # Software Needs You
-Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/develop.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/develop)
+Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master)
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
 
 Ce depôt constitue la partie logiciel du projet [Software Needs You](https://github.com/softwareneedstou).
