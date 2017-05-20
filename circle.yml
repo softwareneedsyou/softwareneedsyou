@@ -4,4 +4,4 @@ machine:
         version: openjdk8
 checkout:
     post:
-        - gradle sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=softwareneedsyou-github -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
+        - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=softwareneedsyou-github -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
