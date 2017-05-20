@@ -1,6 +1,7 @@
 # Software Needs You
 Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master)
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
+[![codecov](https://codecov.io/gh/softwareneedsyou/softwareneedsyou/branch/master/graph/badge.svg)](https://codecov.io/gh/softwareneedsyou/softwareneedsyou)
 
 Ce depôt constitue la partie logiciel du projet [Software Needs You](https://github.com/softwareneedstou).
 La partie serveur est accessible sur [ce dépôt github](https://github.com/softwareneedsyou/softwareneedsyou-server.git)
