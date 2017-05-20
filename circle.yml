@@ -7,5 +7,5 @@ checkout:
         - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=softwareneedsyou-github -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 test:
     post:
-        - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
+        - if [ -e ./gradlew ]; then ./gradlew codeCoverageReport;else gradle codeCoverageReport;fi
         - bash <(curl -s https://codecov.io/bash)
