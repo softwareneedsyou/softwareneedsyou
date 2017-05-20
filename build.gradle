@@ -6,6 +6,11 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
+// Plugins services intégration
+plugins {
+    id "org.sonarqube" version "2.2"
+}
+
 project.group = 'fr.esgi.projet.softwareneedsyou'
 
 //allprojects  pour le projet actuel et les projets en dépendance
