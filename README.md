@@ -3,6 +3,10 @@ Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tr
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
 [![codecov](https://codecov.io/gh/softwareneedsyou/softwareneedsyou/branch/master/graph/badge.svg)](https://codecov.io/gh/softwareneedsyou/softwareneedsyou)
 
+[![Code Climate](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/gpa.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou)
+[![Test Coverage](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/coverage.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/coverage)
+[![Issue Count](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/issue_count.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou)
+
 Ce depôt constitue la partie logiciel du projet [Software Needs You](https://github.com/softwareneedstou).
 La partie serveur est accessible sur [ce dépôt github](https://github.com/softwareneedsyou/softwareneedsyou-server.git)
 
