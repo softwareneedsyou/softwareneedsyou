@@ -7,6 +7,7 @@ Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tr
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
 
 [![codecov](https://codecov.io/gh/softwareneedsyou/softwareneedsyou/branch/master/graph/badge.svg)](https://codecov.io/gh/softwareneedsyou/softwareneedsyou)
+[![CodeFactor](https://www.codefactor.io/repository/github/softwareneedsyou/softwareneedsyou/badge)](https://www.codefactor.io/repository/github/softwareneedsyou/softwareneedsyou)
 
 [![Code Climate](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/gpa.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou)
 [![Test Coverage](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/coverage.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/coverage)
