@@ -1,6 +1,11 @@
 # Software Needs You
+[![GitHub release](https://img.shields.io/github/release/softwareneedsyou/softwareneedsyou.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
+[![Github Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/latest/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
+[![Github All Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
+
 Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master)
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
+
 [![codecov](https://codecov.io/gh/softwareneedsyou/softwareneedsyou/branch/master/graph/badge.svg)](https://codecov.io/gh/softwareneedsyou/softwareneedsyou)
 
 [![Code Climate](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou/badges/gpa.svg)](https://codeclimate.com/github/softwareneedsyou/softwareneedsyou)
