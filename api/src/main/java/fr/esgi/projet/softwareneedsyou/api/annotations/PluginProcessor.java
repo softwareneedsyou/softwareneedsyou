@@ -4,12 +4,7 @@
 package fr.esgi.projet.softwareneedsyou.api.annotations;
 
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,8 +18,6 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.util.SimpleElementVisitor6;
-import javax.lang.model.util.SimpleElementVisitor8;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
