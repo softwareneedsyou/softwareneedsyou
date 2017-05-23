@@ -19,7 +19,19 @@ subprojects {
     //apply plugin: 'eclipse'
     //tasks.eclipse.dependsOn cleanEclipse
     //tasks.eclipseClasspath.dependsOn initProject
+    /*eclipse {
+        classpath {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+	}*/
     //apply plugin: 'idea'
+    /*idea {
+        module {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+    }*/
 
     // Plugins de test
     apply plugin: 'findbugs'
@@ -43,21 +55,26 @@ subprojects {
 
     ext {
         lombockVersion = '1.16.+'
+        commonsLang3version = '3.5+'
 
         //Logging
         // ...
 
         //Testing
         junitVersion = '4.+'
+        assertjVersion = '3.6+'
     }
 
     dependencies {
-        // This dependency is found on compile classpath of this component and consumers.
-        //compile 'com.google.guava:guava:20.0'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang3version
+        //compile group: 'commons-lang3', name: 'commons-lang3', version: '1.10', classifier: 'sources'
+        //compile "commons-lang3:commons-lang3:1.10:sources"
+        //compile "commons-lang3:commons-lang3:1.10:javadoc"
 
         // Use JUnit test framework
         testCompile "junit:junit:$junitVersion"
-        
+        testCompile "org.assertj:assertj-core:$assertjVersion"
+
         compileOnly "org.projectlombok:lombok:$lombockVersion"
     }
 
