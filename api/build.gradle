@@ -8,3 +8,7 @@
 
 version = '0.0.1'
 description = 'The shared API for the application'
+
+dependencies {
+    compile group: 'org.kohsuke.metainf-services', name: 'metainf-services', version: '1.+'
+}
