@@ -44,3 +44,13 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+/.project
+/.settings/org.eclipse.buildship.core.prefs
+/api/.classpath
+/api/.gitignore
+/api/.project
+/api/.settings/org.eclipse.buildship.core.prefs
+/app/.classpath
+/app/.gitignore
+/app/.project
+/app/.settings/org.eclipse.buildship.core.prefs
