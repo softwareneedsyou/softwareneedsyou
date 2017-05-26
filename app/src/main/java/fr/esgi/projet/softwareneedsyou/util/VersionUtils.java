@@ -22,13 +22,16 @@ public /*final*/ class VersionUtils implements Comparable<VersionUtils> {
 	
 	/**
 	 * 
-	 * @param obj
+	 * @param obj objet à analyser
 	 */
 	public VersionUtils(@NonNull final Object obj) {
 		this(obj.getClass());
 	}
 
-	
+	/**
+	 * 
+	 * @param cls classe à analyser
+	 */
 	public VersionUtils(@NonNull final Class<?> cls) {
 		this.str = getVersionAPI(cls);
 		this.complete = Long.parseLong(this.str.replaceAll(".", ""));
@@ -42,6 +45,7 @@ public /*final*/ class VersionUtils implements Comparable<VersionUtils> {
 	
 	/**
 	 * Retourne la version du Jar utilisée
+	 * @param classe classe dont on veut la version
 	 * @return la version sous forme de chaine de caractère.
 	 */
 	@NonNull
@@ -51,6 +55,7 @@ public /*final*/ class VersionUtils implements Comparable<VersionUtils> {
 
 	/**
 	 * Retourne la version du Jar utilisée
+	 * @param obj objet dont on veut la version
 	 * @return la version sous forme de chaine de caractère.
 	 */
 	@NonNull
@@ -58,6 +63,9 @@ public /*final*/ class VersionUtils implements Comparable<VersionUtils> {
 		return getVersionAPI(obj.getClass());
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(@NonNull final VersionUtils v) {
 		long tmp = VersionUtils.getCompleteAdapt(this.str, v.str) - VersionUtils.getCompleteAdapt(v.str, this.str);

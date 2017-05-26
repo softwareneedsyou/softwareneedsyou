@@ -92,7 +92,7 @@ abstract class PluginLoader<D extends PluginDescriptor<P>, P extends AutoCloseab
 	}
 
 	/**
-	 * Rafraîchi la liste des plugins disponibles.<br/>
+	 * Rafraîchi la liste des plugins disponibles.<br>
 	 * Les plugins précédemment chargés qui ne sont plus détecté seront déchargés.
 	 */
 	public void refreshList() {
