@@ -1,0 +1,10 @@
+machine:
+    timezone: Europe/Paris
+    java:
+        version: openjdk8
+test:
+    pre:
+        - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=softwareneedsyou-github -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
+    post:
+        - if [ -e ./gradlew ]; then ./gradlew codeCoverageReport;else gradle codeCoverageReport;fi
+        - bash <(curl -s https://codecov.io/bash)
