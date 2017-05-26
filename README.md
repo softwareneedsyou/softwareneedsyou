@@ -1,7 +1,7 @@
 # Software Needs You
 [![GitHub release](https://img.shields.io/github/release/softwareneedsyou/softwareneedsyou.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
-[![Github Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/latest/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
-[![Github All Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
+[![GitHub Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/latest/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
+[![GitHub All Releases](https://img.shields.io/github/downloads/softwareneedsyou/softwareneedsyou/total.svg)](https://github.com/softwareneedsyou/softwareneedsyou/releases)
 <br/>
 Unix : [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/master)
 Windows : [![Build status](https://ci.appveyor.com/api/projects/status/7gqmng0p2gt008pp/branch/master?svg=true)](https://ci.appveyor.com/project/TristanEduProjet/softwareneedsyou/branch/master)
@@ -17,7 +17,7 @@ Ce dépôt constitue la partie logiciel du projet [Software Needs You](https://g
 La partie serveur est accessible sur [ce dépôt GitHub](https://github.com/softwareneedsyou/softwareneedsyou-server.git)
 
 ## Setup
-Ce projet utilise [gradle](https://gradle.org/) comme système de build.
+Ce projet utilise [Gradle](https://gradle.org/) comme système de build.
 
 Pour compiler et lancer le programme une fois le dépôt cloné:
 ```bash
@@ -40,11 +40,11 @@ Une fois la feature complétée, le merge sur la branche develop se fait via une
 * Les merges sur la branches develop sont en fast-forward
 * Les merges sur la branche master sont ponctuels et manuels. Se seront des commits de rebase, c'est à dire qu'ils rassembleront tout les changements sous un seul commit.
   L'idéal est donc de les effectuer par changement de version mineure.
-* Les features sont discutées et décrites sur [github](https://github.com/softwareneedsyou/softwareneedsyou/projects)
+* Les features sont discutées et décrites sur [GitHub](https://github.com/softwareneedsyou/softwareneedsyou/projects)
 * Chaque pull-request répond à une issue qui correspond à une feature 
 
 ## Gradle
->Le fichier executable `gradlew` est un wrapper générer automatiquement par gradle qui permet de télécharger la
+>Le fichier exécutable `gradlew` est un wrapper générer automatiquement par Gradle qui permet de télécharger la
 version utilisée lors de l'init pour qu'elle soit utilisée en local.
 
 Une documentation exhaustive est disponible sur [leur site](https://docs.gradle.org/3.4.1/userguide/userguide.html).
@@ -52,44 +52,44 @@ Une documentation exhaustive est disponible sur [leur site](https://docs.gradle.
 Globalement, Gradle s'utilise avec des "tâches" : `gradle <task>`.
 
 ### Configuration
-Lors de modifications de gradle, vérifier la configuration avec la commande `gradle` ou `gradle help` qui ne nécessite
+Lors de modifications de Gradle, vérifier la configuration avec la commande `gradle` ou `gradle help` qui ne nécessite
 aucune compilation.
 
 ### Liste des projets/modules
-Pour lister les projets ou moudles gradle : ```gradle projects```.
+Pour lister les projets ou modules Gradle : ```gradle projects```.
 
 ### Libérer une release
-Pour ```compile``` ou ```install``` une relase, il suffit d'ajouter ```release``` dans les tâches de gradle.
+Pour ```compile``` ou ```install``` une release, il suffit d'ajouter ```release``` dans les tâches de Gradle.
 ```bash
 gradle <task(s)> release
 ```
 
 ### Tâches
-Pour voir la liste de toutes les tâches possible avec gradle : `gradle tasks --all`.
+Pour voir la liste de toutes les tâches possible avec Gradle : `gradle tasks --all`.
 Les tâches de la forme `sub:task` est une tâche s'appliquant qu'au sous-module du même nom.
 
 #### Extra tasks Gradle
 * Liste des jars du projet lors de la compilation : `gradle -q listJars`
-* Debuggage : `gradle :<task> :taskTree` pour voir les dépendances des tâches.
-Un graph au format dot est aussi généré lors de la tâche `build` dans `/build/reports/visteg.dot`.
+* Debugage : `gradle :<task> :taskTree` pour voir les dépendances des tâches.
+Un graphe au format dot est aussi généré lors de la tâche `build` dans `/build/reports/visteg.dot`.
 *Utilisation d'un plugin pour avoir cette fonctionnalité.*
 
 ### Compilation
 Pour compiler et tester le projet : `gradle build`, puis `gradle run` pour lancer l'application.
 
-### Modification de gradle
-Lors de modifications de gradle, vérifier la configuration avec `gradle` ou `gradle help` (aucune compilation).
+### Modification de Gradle
+Lors de modifications de Gradle, vérifier la configuration avec `gradle` ou `gradle help` (aucune compilation).
 
 ## Documentation
 ### Javadoc
 La génération de la javadoc se fait par les commandes : `gradle javadoc testJavadoc`.
-L'emplacement de la documentation est déplacée dans `/docs` pour être utilisable directement avec *Github Pages*.
+L'emplacement de la documentation est déplacée dans `/docs` pour être utilisable directement avec *GitHub Pages*.
 
-### Gradle : Lsite des projets/modules
-Pour lister les projets ou moudles gradle : ```gradle projects```.
+### Gradle : Liste des projets/modules
+Pour lister les projets ou modules Gradle : ```gradle projects```.
 
 ### Gradle : libérer une release
-Pour ```compile``` ou ```install``` une relase, il suffit d'ajouter ```release``` dans les tâches de gradle.
+Pour ```compile``` ou ```install``` une release, il suffit d'ajouter ```release``` dans les tâches de Gradle.
 
 
 ## Architecture ##
