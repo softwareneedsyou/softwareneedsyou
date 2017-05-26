@@ -1,8 +1,8 @@
 # Software Needs You
 [![CircleCI](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/develop.svg?style=shield)](https://circleci.com/gh/softwareneedsyou/softwareneedsyou/tree/develop)
 
-Ce depôt constitue la partie logiciel du projet [Software Needs You](https://github.com/softwareneedstou).
-La partie serveur est accessible sur [ce dépôt github](https://github.com/softwareneedsyou/softwareneedsyou-server.git)
+Ce dépôt constitue la partie logiciel du projet [Software Needs You](https://github.com/softwareneedstou).
+La partie serveur est accessible sur [ce dépôt GitHub](https://github.com/softwareneedsyou/softwareneedsyou-server.git)
 
 ## Setup
 Ce projet utilise [gradle](https://gradle.org/) comme système de build.
@@ -13,10 +13,10 @@ gradle build
 gradle run
 ```
 
-Le fichier executable `gradlew` est un wrapper générer automatiquement par gradle qui permet de télécharger le
+Le fichier exécutable `gradlew` est un wrapper générer automatiquement par Gradle qui permet de télécharger le
 version utilisée pour qu'elle soit utilisée en local.
 
-Lors de modifications de gradle, vérifier la configuration avec la commande `gradle check` qui ne nécessite
+Lors de modifications de Gradle, vérifier la configuration avec la commande `gradle check` qui ne nécessite
 aucune compilation.
 
 Un documentation exhaustive est disponible sur [leur site](https://docs.gradle.org/3.4.1/userguide/userguide.html#gsc.tab=0).
@@ -34,7 +34,7 @@ git checkout -b feature/<feature>           #feature commune
 ```
 Une fois la feature complétée, le merge sur la branche develop se fait via une
 [pull-request](https://github.com/softwareneedsyou/softwareneedsyou/pulls), et un membre de l'organisation
-review les changemnets avant d'accepter le merge.
+review les changements avant d'accepter le merge.
 
 * Les merges sur la branches develop sont en fast-forward
 * Les merges sur la branche master sont ponctuels et manuels. Se seront des commits de rebase, c'est à dire
@@ -44,10 +44,17 @@ review les changemnets avant d'accepter le merge.
   [github](https://github.com/softwareneedsyou/softwareneedsyou/projects)
 * Chaque pull-request répond à une issue qui correspond à une feature 
 
+
 ## Documentation
 
 ### Gradle : Lsite des projets/modules
 Pour lister les projets ou moudles gradle : ```gradle projects```.
 
-#### Gradle : libérer une release
+### Gradle : libérer une release
 Pour ```compile``` ou ```install``` une relase, il suffit d'ajouter ```release``` dans les tâches de gradle.
+
+
+## Architecture ##
+
+### Dossier de l'application
+L'application étant (probablement) sous forme d'un jar unique, le stockage des paramètres et des plugins se fera dans un dossier propre à l'application dans le dossier profile de l'utilisateur (via la variable ```System.getproperty("user.home")```).
