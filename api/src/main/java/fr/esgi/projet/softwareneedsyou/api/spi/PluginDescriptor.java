@@ -4,6 +4,7 @@
 package fr.esgi.projet.softwareneedsyou.api.spi;
 
 import java.util.Map;
+import java.util.UUID;
 
 import lombok.NonNull;
 
@@ -14,7 +15,14 @@ import lombok.NonNull;
  * <p>La méthode {@link Object#equals(Object)} et {@link Object#hashCode()} doit être (re)définie car elle est utilisée pour géré les plugins chargés.</p>
  * @param <P> Le type de plugin décrit
  */
-public interface PluginDescriptor<P extends AutoCloseable> {
+public interface PluginDescriptor<P extends Plugin> {
+	/**
+	 * Unique-ID du plugin servant à l'identifier parmi les autres plugins.
+	 * Valeur <code>null</code> interdit.
+	 * @return ID du plugin
+	 */
+	UUID getID();
+	
 	/**
 	 * Nom "visible" du plugin dans l'interface<br>
 	 * Valeur <code>null</code> interdit.
@@ -33,7 +41,8 @@ public interface PluginDescriptor<P extends AutoCloseable> {
 	};
 	
 	/**
-	 * 
+	 * Description courte du plugin<br>
+	 * Valeur <code>null</code> interdit.
 	 * @return courte description du plugin
 	 */
 	@NonNull String getResume();
@@ -43,13 +52,6 @@ public interface PluginDescriptor<P extends AutoCloseable> {
 	 * @return description complète du plugin
 	 */
 	@NonNull String getDescription();
-	
-	/**
-	 * Description courte du plugin<br>
-	 * Valeur <code>null</code> interdit.
-	 * @return description courte du plugin
-	 */
-	@NonNull String getShortDescription();
 
 	/**
 	 * Permet d'éviter de charger tous les plugins en mémoire<br>
