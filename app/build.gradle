@@ -19,6 +19,7 @@ dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':api')
     compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
 
 }
 
