@@ -93,6 +93,7 @@ subprojects {
 
         //General
         lombockVersion = '1.16.+'
+        metainfServicesVersion = '1.+'
         commonsLang3version = '3.5+'
 
         //Logging
@@ -113,6 +114,7 @@ subprojects {
         testCompile "junit:junit:$junitVersion"
         testCompile "org.assertj:assertj-core:$assertjVersion"
         
+        compileOnly "org.kohsuke.metainf-services:metainf-services:$metainfServicesVersion"
         compileOnly "org.projectlombok:lombok:$lombockVersion"
         //compile 'com.google.code.findbugs:annotations:3.0.1'
     }
