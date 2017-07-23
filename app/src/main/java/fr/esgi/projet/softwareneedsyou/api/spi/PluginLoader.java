@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.Set;
 
@@ -21,10 +22,10 @@ import lombok.ToString;
  */
 @EqualsAndHashCode
 @ToString(of={})
-abstract class PluginLoader<D extends PluginDescriptor<P>, P extends AutoCloseable> implements AutoCloseable {
+public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plugin> implements AutoCloseable {
 	@NonNull private final ServiceLoader<D> sl /*= ServiceLoader.load(Plugin.class)*/;
 	@NonNull private final Map<D, P> addons = new HashMap<>();
-	
+
 	/**
 	 * Initialise un loader pour le type de plugin donné.
 	 * @param type Type de plugin à géré
@@ -40,6 +41,14 @@ abstract class PluginLoader<D extends PluginDescriptor<P>, P extends AutoCloseab
 	 */
 	public Set<D> getImplementations() {
 		return Collections.unmodifiableSet(this.addons.keySet());
+	}
+	
+	public Optional<P> getPluginImpl(@NonNull final D plugin) {
+		return Optional.ofNullable(this.addons.get(plugin));
+	}
+	
+	public Map<D, P> getPluginsLoaded() {
+		return Collections.unmodifiableMap(this.addons);
 	}
 	
 	/**
