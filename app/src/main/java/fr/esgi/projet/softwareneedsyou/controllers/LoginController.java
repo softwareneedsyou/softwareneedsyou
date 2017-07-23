@@ -8,10 +8,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.json.JSONException;
+
+import java.io.IOException;
 
 
 public class LoginController {
@@ -22,6 +28,8 @@ public class LoginController {
     private PasswordField passwordPasswordField;
     @FXML
     private Label errorLabel;
+    @FXML
+    private AnchorPane loginAnchorPane;
     private StringProperty errorMessage;
     private DataModel model;
 
@@ -44,10 +52,33 @@ public class LoginController {
         String password = String.valueOf(passwordPasswordField.getCharacters());
         WebApiRequest war = new WebApiRequest();
         try {
-            war.login(new UserCallback(), model, username, password);
             errorMessage.setValue("");
+            war.login(new UserCallback(), model, username, password);
+            loginAnchorPane.getScene().getWindow().hide();
+            start();
         } catch (JSONException | UnirestException e) {
             errorMessage.setValue("Try again");
+        }
+    }
+
+    public void start() {
+        Stage stage = new Stage();
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/MainView.fxml"));
+        AnchorPane root = null;
+        try {
+            root = mainLoader.load();
+            MainController mainController= mainLoader.getController();
+
+            DataModel model = new DataModel();
+            mainController.initModel(model);
+
+            Scene scene = new Scene(root);
+
+            stage.setTitle("Software Needs You");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
