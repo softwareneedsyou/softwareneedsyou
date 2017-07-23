@@ -19,8 +19,4 @@ public class UserModel {
                 ", token='" + token + '\'' +
                 '}';
     }
-
-    public void setToken(String tkn) {
-        this.token = tkn;
-    }
 }

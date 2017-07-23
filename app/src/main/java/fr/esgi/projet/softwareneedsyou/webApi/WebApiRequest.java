@@ -3,12 +3,16 @@ package fr.esgi.projet.softwareneedsyou.webApi;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.GetRequest;
+import fr.esgi.projet.softwareneedsyou.callbacks.UserCallback;
+import fr.esgi.projet.softwareneedsyou.models.DataModel;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
-import org.apache.http.impl.nio.client.HttpAsyncClients;
+import org.apache.http.impl.client.HttpClients;
 
 import static fr.esgi.projet.softwareneedsyou.webApi.Globals.rootUrl;
 
@@ -54,19 +58,19 @@ public class WebApiRequest {
                 .asJsonAsync(getUser);
     }
 
-    public void login(Callback<JsonNode> loginCallback, String username, String password) {
+    public void login(UserCallback userCallback, DataModel model, String username, String password) throws UnirestException {
         CredentialsProvider cp = new BasicCredentialsProvider();
         cp.setCredentials(
                 new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
                 new UsernamePasswordCredentials(username, password));
 
-        CloseableHttpAsyncClient httpAsyncClient = HttpAsyncClients.custom()
+        HttpClient httpClient = HttpClients.custom()
                 .setDefaultCredentialsProvider(cp)
                 .build();
 
-        Unirest.setAsyncHttpClient(httpAsyncClient);
+        Unirest.setHttpClient(httpClient);
 
-        Unirest.get(rootUrl + "/login")
-                .asJsonAsync(loginCallback);
+        GetRequest result = Unirest.get(rootUrl + "/login");
+        userCallback.loginCallback(model, result.asJson().getBody());
     }
 }

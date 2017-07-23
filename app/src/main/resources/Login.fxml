@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="175.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.projet.softwareneedsyou.controllers.LoginController">
+<AnchorPane prefHeight="175.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.projet.softwareneedsyou.controllers.LoginController">
    <children>
       <FlowPane prefHeight="200.0" prefWidth="200.0" styleClass="cadre" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -46,10 +46,10 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </GridPane>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+            <ButtonBar prefHeight="40.0" prefWidth="231.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#handleOk" text="Connexion" />
-                  <Hyperlink text="S'inscrire" />
+                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleOk" text="Connexion" />
+                  <Hyperlink onAction="#handleRedirection" text="S'inscrire" />
               </buttons>
                <FlowPane.margin>
                   <Insets left="180.0" top="5.0" />
