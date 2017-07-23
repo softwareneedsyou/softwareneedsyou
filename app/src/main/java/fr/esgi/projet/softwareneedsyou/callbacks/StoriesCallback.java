@@ -41,7 +41,8 @@ public class StoriesCallback {
             public void completed(HttpResponse<JsonNode> response) {
                 String JSONStories = response.getBody().toString();
                 //@TIPS this is necessary since Java doesn't give a way to represent generic types
-                Type tt = new TypeToken<ArrayList<StoryModel>>(){}.getType();
+                Type tt = new TypeToken<ArrayList<StoryModel>>() {
+                }.getType();
                 ArrayList<StoryModel> stories = new Gson().fromJson(JSONStories, tt);
                 model.setStories(stories);
             }
