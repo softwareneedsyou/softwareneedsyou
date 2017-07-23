@@ -44,8 +44,8 @@ public class ChapterCallback {
                 //@TIPS this is necessary since Java doesn't give a way to represent generic types
                 Type tt = new TypeToken<ArrayList<ChapterModel>>(){}.getType();
                 ArrayList<ChapterModel> chapters = new Gson().fromJson(JSONChapters, tt);
-                model.setChapters(chapters);
-            }
+                    model.setChapters(chapters);
+                }
 
             @Override
             public void failed(UnirestException e) {

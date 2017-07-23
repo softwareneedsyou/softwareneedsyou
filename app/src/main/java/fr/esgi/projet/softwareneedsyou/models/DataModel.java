@@ -1,5 +1,9 @@
 package fr.esgi.projet.softwareneedsyou.models;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class DataModel {
@@ -7,8 +11,27 @@ public class DataModel {
     private PingModel pong;
     private ChapterModel currentChapter;
     private StoryModel currentStory;
-    private ArrayList<ChapterModel> chapters;
+    private ArrayList<ChapterModel> chapters = new ArrayList<ChapterModel>();
+    private ObservableList<ChapterModel> chaptersList = FXCollections.observableList(chapters);
+    private ArrayList<StoryModel> stories = new ArrayList<StoryModel>();
+    private ObservableList<StoryModel> storiesList = FXCollections.observableList(stories);
     private ArrayList<PluginModel> plugins;
+
+    public ObservableList<StoryModel> getStoriesList() {
+        return storiesList;
+    }
+
+    public ObservableList<ChapterModel> getChaptersList() {
+        return chaptersList;
+    }
+
+    public void setStoriesList(ObservableList<StoryModel> storiesList) {
+        this.storiesList = storiesList;
+    }
+
+    public void setChaptersList(ObservableList<ChapterModel> chaptersList) {
+        this.chaptersList = chaptersList;
+    }
 
     public PingModel getPong() {
         return pong;
@@ -24,11 +47,14 @@ public class DataModel {
 
     public void setStories(ArrayList<StoryModel> stories) {
         this.stories = stories;
+        Platform.runLater(() -> {
+            this.storiesList.setAll(stories);
+        });
     }
 
-    private ArrayList<StoryModel> stories;
-
     public DataModel() {
+        chapters.add(new ChapterModel());
+        stories.add(new StoryModel());
         setCurrentChapter(this.currentChapter);
         setCurrentStory(this.currentStory);
     }
@@ -38,11 +64,14 @@ public class DataModel {
     }
 
     public ArrayList<ChapterModel> getChapters() {
-        return chapters;
+        return this.chapters;
     }
 
     public void setChapters(ArrayList<ChapterModel> chapters) {
         this.chapters = chapters;
+        Platform.runLater(() -> {
+            this.chaptersList.setAll(chapters);
+        });
     }
 
     public PluginModel getCurrentPlugin() {
