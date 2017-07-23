@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.kohsuke.MetaInfServices;
 
 /**
- * @author Blixel
+ * @author Tristan
  *
  * Test de la génération du META-INF/service
  */
@@ -26,33 +26,36 @@ import org.kohsuke.MetaInfServices;
 public class PluginTest implements PluginTestInterf {
 
 	/**
-	 * @throws java.lang.Exception
+	 * 
 	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 	}
 
 	/**
-	 * @throws java.lang.Exception
+	 * 
 	 */
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public static void tearDownAfterClass() {
 	}
 
 	/**
-	 * @throws java.lang.Exception
+	 * 
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 	}
 
 	/**
-	 * @throws java.lang.Exception
+	 * 
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 	}
 
+	/**
+	 * Test le bon fonctionnement du SPI
+	 */
 	@Test
 	public final void testPluginSPI() {
 		ServiceLoader<PluginTestInterf> loader = ServiceLoader.load(PluginTestInterf.class);
@@ -65,6 +68,9 @@ public class PluginTest implements PluginTestInterf {
 		assertTrue(found);
 	}
 
+	/**
+	 * Test le bon fonctionnement de l'annotation pour le META-INF/services
+	 */
 	@Test
 	public final void testPluginMetaInf() {
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("META-INF/services/" + PluginTestInterf.class.getName())))) {
