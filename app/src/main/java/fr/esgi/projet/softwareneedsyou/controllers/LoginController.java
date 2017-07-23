@@ -55,21 +55,20 @@ public class LoginController {
             errorMessage.setValue("");
             war.login(new UserCallback(), model, username, password);
             loginAnchorPane.getScene().getWindow().hide();
-            start();
+            startMainView(model);
         } catch (JSONException | UnirestException e) {
             errorMessage.setValue("Try again");
         }
     }
 
-    public void start() {
+    public void startMainView(DataModel model) {
+        System.out.println(model.getUser());
         Stage stage = new Stage();
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/MainView.fxml"));
         AnchorPane root = null;
         try {
             root = mainLoader.load();
             MainController mainController= mainLoader.getController();
-
-            DataModel model = new DataModel();
             mainController.initModel(model);
 
             Scene scene = new Scene(root);

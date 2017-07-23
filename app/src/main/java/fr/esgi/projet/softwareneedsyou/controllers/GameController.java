@@ -2,7 +2,7 @@ package fr.esgi.projet.softwareneedsyou.controllers;
 
 import fr.esgi.projet.softwareneedsyou.models.DataModel;
 
-public class ChaptersController {
+public class GameController {
     private DataModel model;
 
     public void initModel(DataModel model) {
