@@ -9,9 +9,18 @@ public class DataModel {
     private StoryModel currentStory;
     private ArrayList<ChapterModel> chapters;
     private ArrayList<PluginModel> plugins;
+    private UserModel user;
 
     public PingModel getPong() {
         return pong;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
     public void setPong(PingModel pong) {
