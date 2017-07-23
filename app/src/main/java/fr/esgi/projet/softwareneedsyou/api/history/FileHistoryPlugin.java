@@ -163,7 +163,7 @@ public class FileHistoryPlugin implements PluginHistory {
 		@NonNull final Document doc = Jsoup.parse(input, "utf-8", "", Parser.xmlParser());
 		@NonNull final Element history = doc.select("chapter").first();
 		Chapter c= createHistoryWithNonNullCheck(UUID.fromString(history.attr("compiler")),
-											history.getElementsByTag("title").first().val(),
+											history.getElementsByTag("title").first().text(),
 											Optional.ofNullable(loadContentNode(fs, history.getElementsByTag("description").first())),
 											LStoryFromStories(fs, history.select("stories").first()));
 		System.out.println(c);
@@ -267,7 +267,7 @@ public class FileHistoryPlugin implements PluginHistory {
 		if(node == null) return null;
 		switch(node.attr("type")) {
 			case "text":
-				return node.val();
+				return node.text();
 			case "file":
 				return "";
 			//try {
