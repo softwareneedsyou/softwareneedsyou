@@ -3,6 +3,7 @@
  */
 package fr.esgi.projet.softwareneedsyou.api.spi;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	 * @param type Type de plugin à géré
 	 */
 	protected PluginLoader(@NonNull final Class<D> type) {
+		System.out.println("// init PluginLoader for " + type);
 		this.sl = ServiceLoader.load(type);
 		this.refreshList();
 	}
@@ -67,6 +69,7 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	 * @see {@link #initPluginParams(PluginDeclare)}
 	 */
 	public void load(@NonNull final D plugin) throws PluginException {
+		System.out.println("// load plugin " + plugin);
 		if(this.addons.get(plugin) != null)
 			throw new PluginException("Plugin déjà chargé");
 		else
@@ -88,6 +91,7 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	 * @throws InvalidArgumentsException si le plugin n'est pas reconnu
 	 */
 	public void unload(@NonNull final D plugin) throws PluginException, InvalidArgumentsException {
+		System.out.println("// unload plugin " + plugin);
 		if(this.addons.containsKey(plugin)) {
 			final P pl = this.addons.put(plugin, null);
 			if(pl != null)
@@ -105,10 +109,12 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	 * Les plugins précédemment chargés qui ne sont plus détecté seront déchargés.
 	 */
 	public void refreshList() {
+		System.out.println("// refreshList");
 		List<D> tmp = new LinkedList<>();
 		this.sl.reload();
-		this.sl.forEach(tmp::add);
-		this.addons.forEach((k, v) -> {
+		this.sl.forEach(tmp::add); //load all classes found
+		System.out.println("ServiceLoader -> " + Arrays.toString(tmp.toArray()));
+		this.addons.forEach((k, v) -> { //unload old classes
 			if(!tmp.contains(k))
 				try {
 					this.unload((D) this.addons.remove(k));
@@ -116,7 +122,7 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 					e.printStackTrace();
 				}
 		});
-		tmp.forEach(d -> this.addons.computeIfAbsent(d, null));
+		tmp.forEach(d -> this.addons.putIfAbsent(d, null)); //add new classes
 	}
 
 }

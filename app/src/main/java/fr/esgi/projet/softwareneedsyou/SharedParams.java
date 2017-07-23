@@ -3,6 +3,7 @@
  */
 package fr.esgi.projet.softwareneedsyou;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -16,10 +17,10 @@ public final class SharedParams {
 	/**
 	 * Dossier propre à l'application (paramètres et plugins)
 	 */
-	public static final String AppParamsFolder = Paths.get(System.getProperty("user.home", "."), "SNY").toString();
+	public static final Path AppParamsFolder = Paths.get(System.getProperty("user.home", "."), "SNY");
 
 	/**
 	 * Sous-dossier où se trouve les plugins
 	 */
-	public static final String AppPluginsFolder = Paths.get(AppParamsFolder, "plugins").toString();
+	public static final Path AppPluginsFolder = AppParamsFolder.resolve("plugins");
 }
