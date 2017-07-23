@@ -13,7 +13,7 @@ import java.util.Set;
  * @author Tristan
  * @see PluginHistory
  */
-public interface Level {
+public interface Story {
 	/**
 	 * Titre du niveau
 	 * @return titre

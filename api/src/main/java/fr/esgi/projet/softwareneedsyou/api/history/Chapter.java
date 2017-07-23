@@ -19,8 +19,8 @@ import lombok.ToString;
  * @author Tristan
  */
 @EqualsAndHashCode
-@ToString
-public abstract class History /*implements Comparable<History>*/ {
+//@ToString
+public abstract class Chapter {
 	/**
 	 * UUID du compilateur compatible
 	 * @return UUID du compilateur
@@ -43,7 +43,7 @@ public abstract class History /*implements Comparable<History>*/ {
 	 * Niveau(x) constituant l'histoire
 	 * @return niveau(x) (instance)
 	 */
-	public abstract Collection<Level> getLevels();
+	public abstract Collection<Story> getStories();
 
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
@@ -59,12 +59,21 @@ public abstract class History /*implements Comparable<History>*/ {
 		return Objects.hash( this.getCompiler(), this.getTitle(), op.isPresent() ? op.get() : new Object());
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Chapter [getCompiler()=" + getCompiler() + ", getTitle()=" + getTitle() + ", getResume()=" + getResume()
+				+ ", getStories()=" + getStories() + "]";
+	}
+
 	@Override
 	public boolean equals(@NonNull final Object other) {
 		if(super.equals(other))
 			return true;
-		else if((other instanceof History)) {
-			final History hist = (History) other;
+		else if((other instanceof Chapter)) {
+			final Chapter hist = (Chapter) other;
 			return this.getCompiler().equals(hist.getCompiler()) && this.getTitle().equals(hist.getTitle()) && this.getResume().equals(hist.getResume());
 		} else
 			return false;

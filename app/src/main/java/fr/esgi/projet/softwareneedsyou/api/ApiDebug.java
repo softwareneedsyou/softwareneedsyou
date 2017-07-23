@@ -18,7 +18,6 @@ public final class ApiDebug {
 	 * 
 	 */
 	public ApiDebug() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -33,9 +32,10 @@ public final class ApiDebug {
 		hl.getPluginsDetected().forEach(System.out::println);
 		System.out.println("\n\t-- loaded :");
 		hl.getPluginsLoaded().forEach((k, v) -> {if(v!=null) System.out.println(k.getName());});
+		System.out.println();
 		hl.loadAllPlugins();
-		System.out.println("\n\t-- histories :");
-		hl.getHistories().forEach((p, clh) -> {System.out.println(p.getName()); clh.forEach(h -> System.out.println("\t" + h.getTitle()));});
+		System.out.println("\n\t-- histories : " + hl.getHistories().size());
+		hl.getHistories().forEach((p, clh) -> {System.out.println(p.toString() +"~>"+p.getName()); clh.forEach(h -> System.out.println("\t~" + h));});
 		
 		//System.out.println("\t-- Plugin ...");
 	}

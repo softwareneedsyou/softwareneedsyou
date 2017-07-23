@@ -41,12 +41,16 @@ import org.jsoup.parser.Parser;
 import org.xml.sax.SAXException;
 
 import fr.esgi.projet.softwareneedsyou.SharedParams;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import lombok.ToString;
 
 /**
  * @author Tristan
  *
  */
+@EqualsAndHashCode
+@ToString
 public class FileHistoryPlugin implements PluginHistory {
 	/**
 	 * Sous-dossier où se trouve les histoires (fichiers "simples")
@@ -71,7 +75,7 @@ public class FileHistoryPlugin implements PluginHistory {
 	 * Toutes les histoires trouvées.
 	 * Stockée dans un path pour évité de les rechargées à chaque fois.
 	 */
-	private final Map<Path, History> histories = new HashMap<>();
+	private final Map<Path, Chapter> histories = new HashMap<>();
 
 	/**
 	 * 
@@ -98,22 +102,24 @@ public class FileHistoryPlugin implements PluginHistory {
 	 * @see fr.esgi.projet.softwareneedsyou.api.history.PluginHistory#getHistories()
 	 */
 	@Override
-	public Collection<History> getHistories() {
+	public Collection<Chapter> getHistories() {
 		return loadHistories(AppHistoriesFolder);
 	}
 
-	private final Collection<History> loadHistories(@NonNull final String folder) {
+	private final Collection<Chapter> loadHistories(@NonNull final String folder) {
 		return loadHistories(URI.create(folder));
 	}
 	
-	private final Collection<History> loadHistories(@NonNull final URI folder) {
+	private final Collection<Chapter> loadHistories(@NonNull final URI folder) {
 		return loadHistories(Paths.get(folder));
 	}
 	
-	private final Collection<History> loadHistories(@NonNull final Path folder) {
-		try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(folder, pf -> pf.endsWith(HistoryExtension))) {
-			dirStream.forEach(p -> this.histories.computeIfAbsent(p, f -> readHistories(f)));
+	private final Collection<Chapter> loadHistories(@NonNull final Path folder) {
+		System.out.println("// load histories in " + folder);
+		try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(folder, "*"+HistoryExtension)) {
+			dirStream.forEach(p -> {System.out.println("// e_ "+p); this.histories.computeIfAbsent(p, f -> {Chapter c=readHistories(f); System.out.println(c); return c;});});
 			this.histories.forEach((p, h) -> {if(Objects.isNull(h)) this.histories.remove(p);});
+			this.histories.forEach((k, v) -> System.out.println(k+" , "+v));
 			return this.histories.values();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -121,24 +127,26 @@ public class FileHistoryPlugin implements PluginHistory {
 		}
 	}
 	
-	private final static History readHistories(@NonNull final String file) {
+	private final static Chapter readHistories(@NonNull final String file) {
 		return readHistory(URI.create(file));
 	}
 	
-	private final static History readHistories(@NonNull Path file) {
+	private final static Chapter readHistories(@NonNull Path file) {
 		return readHistory(file.toUri());
 	}
 	
-	private final static History readHistory(@NonNull final URI file) {
-		try(final FileSystem zipfs = FileSystems.newFileSystem(file, zip_properties)) {
+	private final static Chapter readHistory(@NonNull final URI file) {
+		System.out.println("// open history " + file);
+		System.out.println("// a: "+file.getAuthority()+" ; p: "+file.getPath()+" ; q: "+file.getQuery()+" ; f: "+file.getFragment());
+		try(final FileSystem zipfs = FileSystems.newFileSystem(URI.create("jar:"+file.toString()), zip_properties)) {
 			@NonNull final Path path = zipfs.getPath("/index.xml");
 			try(@NonNull final InputStream root = Files.newInputStream(path, StandardOpenOption.READ)) {
 				validateXML(root);
 			} catch (SAXException e) {
 				e.printStackTrace();
 			}
-			try(@NonNull final InputStream root = Files.newInputStream(path, StandardOpenOption.READ)) {
-				return parseHistory(zipfs, root);
+			try(@NonNull final InputStream root_ = Files.newInputStream(path, StandardOpenOption.READ)) {
+				return parseHistory(zipfs, root_);
 			}
 		} catch (final IOException e) {
 			e.printStackTrace();
@@ -151,18 +159,20 @@ public class FileHistoryPlugin implements PluginHistory {
 	 * @param in
 	 * @throws IOException 
 	 */
-	private final static History parseHistory(@NonNull final FileSystem fs, @NonNull final InputStream input) throws IOException {
+	private final static Chapter parseHistory(@NonNull final FileSystem fs, @NonNull final InputStream input) throws IOException {
 		@NonNull final Document doc = Jsoup.parse(input, "utf-8", "", Parser.xmlParser());
-		@NonNull final Element history = doc.select("history").first();
-		return createHistoryWithNonNullCheck(UUID.fromString(history.attr("compiler")),
-				history.getElementsByTag("title").first().val(),
-											Optional.ofNullable(loadContentNode(null, history.getElementsByTag("description").first())),
-											LLevelFromLevels(fs, history.select("levels").first()));
+		@NonNull final Element history = doc.select("chapter").first();
+		Chapter c= createHistoryWithNonNullCheck(UUID.fromString(history.attr("compiler")),
+											history.getElementsByTag("title").first().val(),
+											Optional.ofNullable(loadContentNode(fs, history.getElementsByTag("description").first())),
+											LStoryFromStories(fs, history.select("stories").first()));
+		System.out.println(c);
+		return c;
 	}
 	
-	private final static History createHistoryWithNonNullCheck(@NonNull final UUID compiler, @NonNull final String title,
-																@NonNull Optional<String> description, @NonNull final List<Level> levels) {
-		return new History() {
+	private final static Chapter createHistoryWithNonNullCheck(@NonNull final UUID compiler, @NonNull final String title,
+																@NonNull Optional<String> description, @NonNull final List<Story> levels) {
+		return new Chapter() {
 			//private final List<Level> llevels = Arrays.asList(levels);
 			
 			@Override
@@ -176,7 +186,7 @@ public class FileHistoryPlugin implements PluginHistory {
 			}
 			
 			@Override
-			public Collection<Level> getLevels() {
+			public Collection<Story> getStories() {
 				return levels;
 			}
 			
@@ -187,18 +197,18 @@ public class FileHistoryPlugin implements PluginHistory {
 		};
 	}
 	
-	private final static List<Level> LLevelFromLevels(@NonNull final FileSystem fs, @NonNull final Element levels) {
-		return levels.select("level").parallelStream().map(l -> createLevelWithNonNullCheck(l.attr("name"),
-																							loadContentNode(fs, l.getElementsByTag("desciption").first()),
+	private final static List<Story> LStoryFromStories(@NonNull final FileSystem fs, @NonNull final Element levels) {
+		return levels.select("story").parallelStream().map(l -> createStoryWithNonNullCheck(l.attr("name"),
+																							loadContentNode(fs, l.getElementsByTag("description").first()),
 																							Optional.ofNullable(loadContentNode(fs, l.getElementsByTag("resume").first())),
 																							fs.getPath(l.select("tests").first().attr("file")),
 																							new HashSet<Test>(LTestFromTests(l.select("tests").first()))))
 														.collect(Collectors.toList());
 	}
-	private final static Level createLevelWithNonNullCheck(@NonNull final String name, @NonNull final String description,
+	private final static Story createStoryWithNonNullCheck(@NonNull final String name, @NonNull final String description,
 															@NonNull final Optional<String> resume, @NonNull final Path test,
 															@NonNull final Set<Test> tests) {
-		return new Level() {
+		return new Story() {
 			//private final Set<Test> ltests = new HashSet<>(Arrays.asList(tests));
 			
 			@Override
@@ -253,17 +263,19 @@ public class FileHistoryPlugin implements PluginHistory {
 		};
 	}
 	
-	public final static String loadContentNode(@NonNull final FileSystem fs, @NonNull final Element node) {
+	public final static String loadContentNode(@NonNull final FileSystem fs, /*@NonNull*/ final Element node) {
+		if(node == null) return null;
 		switch(node.attr("type")) {
 			case "text":
 				return node.val();
 			case "file":
-			try {
-				return Files.lines(fs.getPath(node.val()), StandardCharsets.UTF_8).collect(Collectors.joining("\n"));
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
+				return "";
+			//try {
+			//	return Files.lines(fs.getPath(node.val()), StandardCharsets.UTF_8).collect(Collectors.joining("\n"));
+			//} catch (IOException e) {
+			//	e.printStackTrace();
+			//	return null;
+			//}
 			default:
 				//throw new IOException(fs.toString() + " : Type non reconnu");
 				return null;
@@ -272,7 +284,8 @@ public class FileHistoryPlugin implements PluginHistory {
 	
 	private final static void validateXML(@NonNull final InputStream in) throws SAXException, IOException {
 		@NonNull final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		@NonNull final Schema schema = factory.newSchema(History.class.getResource("HistorySchema.xsd"));
+		System.out.println(Chapter.class.getClassLoader().getResource("HistorySchema.xsd"));
+		@NonNull final Schema schema = factory.newSchema(Chapter.class.getClassLoader().getResource("HistorySchema.xsd"));
 		@NonNull final Validator validator = schema.newValidator();
 		validator.validate(new StreamSource(in));
 	}

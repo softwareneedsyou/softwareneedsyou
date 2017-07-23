@@ -17,5 +17,5 @@ public interface PluginHistory extends Plugin {
 	 * Il est conseiller que la collection soit immutable.
 	 * @return Liste des niveaux
 	 */
-	Collection<History> getHistories();
+	Collection<Chapter> getHistories();
 }

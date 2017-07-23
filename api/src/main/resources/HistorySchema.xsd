@@ -19,15 +19,19 @@
     	</restriction>
     </simpleType>
 
-    <complexType name="Content" abstract="true">
-    	<attribute name="type" use="required">
-    		<simpleType>
-    			<restriction base="hst:stringNoEmpty">
-    				<enumeration value="text"></enumeration>
-    				<enumeration value="file"></enumeration>
-    			</restriction>
-    		</simpleType>
-    	</attribute>
+    <complexType name="Content">
+    	<simpleContent>
+    		<extension base="hst:stringCollaspe">
+    			<attribute name="type" use="required">
+    				<simpleType>
+    					<restriction base="hst:stringNoEmpty">
+    						<enumeration value="text"></enumeration>
+    						<enumeration value="file"></enumeration>
+    					</restriction>
+    				</simpleType>
+    			</attribute>
+    		</extension>
+    	</simpleContent>
     </complexType>
 
     <complexType name="Test">
@@ -43,7 +47,7 @@
     	<attribute name="resume" type="hst:stringNoEmpty" use="optional"></attribute>
     </complexType>
 
-    <complexType name="Level" abstract="true">
+    <complexType name="Story">
     	<annotation>
     		<documentation>Niveau d'une histoire</documentation>
     	</annotation>
@@ -76,7 +80,7 @@
     	</attribute>
     </complexType>
 
-    <element name="history">
+    <element name="chapter">
     	<complexType>
     		<all maxOccurs="1" minOccurs="1">
     			<element name="title" type="hst:stringNoEmpty"
@@ -93,7 +97,7 @@
     					</documentation>
     				</annotation>
     			</element>
-    			<element name="levels" maxOccurs="1" minOccurs="1">
+    			<element name="stories" maxOccurs="1" minOccurs="1">
     				<annotation>
     					<documentation>
     						Liste des niveaux composant l'histoire
@@ -101,7 +105,7 @@
     				</annotation>
     				<complexType>
     					<sequence>
-    						<element name="level" type="hst:Level"
+    						<element name="story" type="hst:Story"
     							maxOccurs="unbounded" minOccurs="1">
     						</element>
     					</sequence>

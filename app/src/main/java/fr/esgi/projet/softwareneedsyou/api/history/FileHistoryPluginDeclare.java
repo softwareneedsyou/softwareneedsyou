@@ -38,7 +38,7 @@ public class FileHistoryPluginDeclare implements PluginHistoryDeclare {
 	 */
 	@Override
 	public String getName() {
-		return PluginHistoryDeclare.super.getName();
+		return FileHistoryPlugin.class.getSimpleName();
 	}
 
 	/* (non-Javadoc)

@@ -25,7 +25,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public final class HistoryLoader {
-	@NonNull private Map<PluginHistoryDeclare, Collection<History>> histories = new HashMap<>();
+	@NonNull private Map<PluginHistoryDeclare, Collection<Chapter>> histories = new HashMap<>();
 	
 	@Getter
 	private final PluginLoader<PluginHistoryDeclare, PluginHistory> historiesloader = new PluginLoader<PluginHistoryDeclare, PluginHistory>(PluginHistoryDeclare.class) {
@@ -55,6 +55,7 @@ public final class HistoryLoader {
 		 */
 		@Override
 		public void unload(final PluginHistoryDeclare plugin) throws PluginException, InvalidArgumentsException {
+			System.out.println("// unload plugin "+plugin);
 			HistoryLoader.this.histories.remove(plugin);
 			super.unload(plugin);
 		}
@@ -63,7 +64,7 @@ public final class HistoryLoader {
 	/**
 	 * @return the histories (loaded)
 	 */
-	public Map<PluginHistoryDeclare, Collection<History>> getHistories() {
+	public Map<PluginHistoryDeclare, Collection<Chapter>> getHistories() {
 		return Collections.unmodifiableMap(this.histories);
 	}
 
@@ -89,5 +90,6 @@ public final class HistoryLoader {
 				e.printStackTrace();
 			}
 		});
+		this.historiesloader.getPluginsLoaded().forEach((phd, ph) -> this.histories.put(phd, ph.getHistories()));
 	}
 }
