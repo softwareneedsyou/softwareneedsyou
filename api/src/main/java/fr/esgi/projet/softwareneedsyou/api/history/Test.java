@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * Description d'un test
  * 
- * @author Blixel
+ * @author Tristan
  */
 public interface Test {
 	/**

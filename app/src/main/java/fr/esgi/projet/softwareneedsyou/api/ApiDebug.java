@@ -9,7 +9,7 @@ import fr.esgi.projet.softwareneedsyou.api.spi.PluginException;
 import lombok.NonNull;
 
 /**
- * @author Blixel
+ * @author Tristan
  *
  */
 public final class ApiDebug {

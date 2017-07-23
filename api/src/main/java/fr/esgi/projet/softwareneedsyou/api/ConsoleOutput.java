@@ -6,7 +6,7 @@ package fr.esgi.projet.softwareneedsyou.api;
 import java.io.OutputStream;
 
 /**
- * @author Blixel
+ * @author Tristan
  *
  */
 public interface ConsoleOutput {

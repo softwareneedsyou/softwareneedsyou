@@ -44,7 +44,7 @@ import fr.esgi.projet.softwareneedsyou.SharedParams;
 import lombok.NonNull;
 
 /**
- * @author Blixel
+ * @author Tristan
  *
  */
 public class FileHistoryPlugin implements PluginHistory {

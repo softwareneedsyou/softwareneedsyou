@@ -66,7 +66,7 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	 * Charge un plugin s'il n'est pas déjà chargé
 	 * @param plugin le plugin à chargé
 	 * @throws PluginException si le plugin est déjà chargé
-	 * @see {@link #initPluginParams(PluginDeclare)}
+	 * @see #initPluginParams(PluginDescriptor)
 	 */
 	public void load(@NonNull final D plugin) throws PluginException {
 		System.out.println("// load plugin " + plugin);
@@ -77,10 +77,10 @@ public abstract class PluginLoader<D extends PluginDescriptor<P>, P extends Plug
 	}
 	
 	/**
-	 * Appelé par {@link #load(PluginDeclare)} pour passer les paramètres au plugin lors de l'initialisation.
+	 * Appelé par {@link #load(PluginDescriptor)} pour passer les paramètres au plugin lors de l'initialisation.
 	 * @param plugin le plugin qui va être initialisé
 	 * @return une map, jamais null
-	 * @see #load(PluginDeclare)
+	 * @see #load(PluginDescriptor)
 	 */
 	protected abstract Map<String, Object> initPluginParams(@NonNull final D plugin);
 	
