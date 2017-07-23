@@ -113,6 +113,7 @@ subprojects {
         // Use JUnit test framework
         testCompile "junit:junit:$junitVersion"
         testCompile "org.assertj:assertj-core:$assertjVersion"
+        testCompile "org.kohsuke.metainf-services:metainf-services:$metainfServicesVersion"
         
         compileOnly "org.kohsuke.metainf-services:metainf-services:$metainfServicesVersion"
         compileOnly "org.projectlombok:lombok:$lombockVersion"
