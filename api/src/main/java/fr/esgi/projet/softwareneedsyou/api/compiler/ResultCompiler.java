@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -55,6 +56,8 @@ public class ResultCompiler {
 	 * @param compileSuccess
 	 * @param testsResults
 	 */
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	private int count;
 	public ResultCompiler(final boolean compileSuccess, @NonNull final Collection<ResultTest> testsResults) {
 		super();
@@ -81,5 +84,9 @@ public class ResultCompiler {
 	 */
 	public Map<Integer, ResultTest> getTestsResults() {
 		return Collections.unmodifiableMap(this.testsResults);
+	}
+	
+	public void addResultTest(final int id, @NonNull final ResultTest rt) {
+		this.testsResults.put(id, rt);
 	}
 }
