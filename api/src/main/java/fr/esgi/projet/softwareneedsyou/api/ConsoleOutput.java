@@ -3,7 +3,7 @@
  */
 package fr.esgi.projet.softwareneedsyou.api;
 
-import java.io.OutputStream;
+import java.io.PrintWriter;
 
 /**
  * @author Tristan
@@ -15,13 +15,13 @@ public interface ConsoleOutput {
 	 * @param isErr
 	 * @return
 	 */
-	OutputStream getStream(final boolean isErr);
+	PrintWriter getWriter(final boolean isErr);
 	
-	default OutputStream getOutput() {
-		return this.getStream(false);
+	default PrintWriter getOutput() {
+		return this.getWriter(false);
 	}
 	
-	default OutputStream getError() {
-		return this.getStream(true);
+	default PrintWriter getError() {
+		return this.getWriter(true);
 	}
 }

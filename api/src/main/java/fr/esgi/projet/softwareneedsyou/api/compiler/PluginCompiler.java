@@ -29,7 +29,7 @@ public interface PluginCompiler extends Plugin {
 	 */
 	@NonNull Set<String> getLngSupported();
 
-	@NonNull Optional<Object> compileAndTest(@NonNull final String code,
+	@NonNull Optional<ResultCompiler> compileAndTest(@NonNull final String code,
 											 @NonNull final InputStream testsDef,
 											 @NonNull final ConsoleOutput console) throws CompilerException;
 }

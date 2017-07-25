@@ -6,7 +6,7 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
-version = '0.0.2'
+version = '0.0.3'
 description = 'The shared API for the application'
 
 dependencies {
