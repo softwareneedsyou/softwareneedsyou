@@ -15,7 +15,7 @@ public class DataModel {
     private ObservableList<ChapterModel> chaptersList = FXCollections.observableList(chapters);
     private ArrayList<StoryModel> stories = new ArrayList<StoryModel>();
     private ObservableList<StoryModel> storiesList = FXCollections.observableList(stories);
-    private ArrayList<PluginModel> plugins;
+    private ArrayList<PluginModel> plugins = new ArrayList<>();
     private UserModel user;
 
     public ObservableList<StoryModel> getStoriesList() {
@@ -62,8 +62,6 @@ public class DataModel {
     }
 
     public DataModel() {
-        chapters.add(new ChapterModel());
-        stories.add(new StoryModel());
         setCurrentChapter(this.currentChapter);
         setCurrentStory(this.currentStory);
     }

@@ -25,12 +25,12 @@ public class HomeController {
     @FXML
     public void initialize(){
         lastnameProperty = new SimpleStringProperty();
-        lastnameProperty.addListener((observableValue, s, t1) -> lastnameLabel.setText(observableValue.getValue()));
         firstnameProperty = new SimpleStringProperty();
-        firstnameProperty.addListener((observableValue, s, t1) -> firstnameLabel.setText(observableValue.getValue()));
         usernameProperty = new SimpleStringProperty();
-        usernameProperty.addListener((observableValue, s, t1) -> usernameLabel.setText(observableValue.getValue()));
         emailProperty = new SimpleStringProperty();
+        lastnameProperty.addListener((observableValue, s, t1) -> lastnameLabel.setText(observableValue.getValue()));
+        firstnameProperty.addListener((observableValue, s, t1) -> firstnameLabel.setText(observableValue.getValue()));
+        usernameProperty.addListener((observableValue, s, t1) -> usernameLabel.setText(observableValue.getValue()));
         emailProperty.addListener((observableValue, s, t1) -> emailLabel.setText(observableValue.getValue()));
     }
 
@@ -39,11 +39,12 @@ public class HomeController {
             throw new IllegalStateException("There can only be one model.");
         }
         this.model = model;
-
-        UserModel user = model.getUser();
-        lastnameProperty.setValue(user.getLastname());
-        firstnameProperty.setValue(user.getFirstname());
-        usernameProperty.setValue(user.getUsername());
-        emailProperty.setValue(user.getEmail());
+        if(model.getUser() != null) {
+            UserModel user = model.getUser();
+            lastnameProperty.setValue(user.getLastname());
+            firstnameProperty.setValue(user.getFirstname());
+            usernameProperty.setValue(user.getUsername());
+            emailProperty.setValue(user.getEmail());
+        }
     }
 }

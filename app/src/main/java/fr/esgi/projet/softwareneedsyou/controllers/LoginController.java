@@ -50,10 +50,9 @@ public class LoginController {
     public void handleOk() {
         String username = String.valueOf(usernameTextField.getCharacters());
         String password = String.valueOf(passwordPasswordField.getCharacters());
-        WebApiRequest war = new WebApiRequest();
         try {
             errorMessage.setValue("");
-            war.login(new UserCallback(), model, username, password);
+            WebApiRequest.login(new UserCallback(), model, username, password);
             loginAnchorPane.getScene().getWindow().hide();
             startMainView(model);
         } catch (JSONException | UnirestException e) {
@@ -62,7 +61,6 @@ public class LoginController {
     }
 
     public void startMainView(DataModel model) {
-        System.out.println(model.getUser());
         Stage stage = new Stage();
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/MainView.fxml"));
         AnchorPane root = null;

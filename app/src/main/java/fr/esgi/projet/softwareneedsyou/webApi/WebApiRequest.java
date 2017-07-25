@@ -18,47 +18,7 @@ import static fr.esgi.projet.softwareneedsyou.webApi.Globals.rootUrl;
 
 public class WebApiRequest {
 
-    public void ping(Callback<String> pingCallback) {
-        Unirest.get(rootUrl + "/ping")
-                .asStringAsync(pingCallback);
-    }
-
-    public void getChapters(Callback<JsonNode> getChaptersCallback) {
-        Unirest.get(rootUrl + "/chapters")
-                .asJsonAsync(getChaptersCallback);
-    }
-
-    public void getChapter(Callback<JsonNode> getChapterCallback, int id) {
-        Unirest.get(rootUrl + "/chapters/" + id)
-                .asJsonAsync(getChapterCallback);
-    }
-
-    public void getStory(Callback<JsonNode> getStory, int id){
-        Unirest.get(rootUrl + "/stories/" + id)
-                .asJsonAsync(getStory);
-    }
-
-    public void getStories(Callback<JsonNode> getStories){
-        Unirest.get(rootUrl + "/stories")
-                .asJsonAsync(getStories);
-    }
-
-    public void getPlugin(Callback<JsonNode> getPlugin, int id){
-        Unirest.get(rootUrl + "/plugins/" + id)
-                .asJsonAsync(getPlugin);
-    }
-
-    public void getPlugins(Callback<JsonNode> getPlugins){
-        Unirest.get(rootUrl + "/plugins")
-                .asJsonAsync(getPlugins);
-    }
-
-    public void getUser(Callback<JsonNode> getUser, int id){
-        Unirest.get(rootUrl + "/users/" + id)
-                .asJsonAsync(getUser);
-    }
-
-    public void login(UserCallback userCallback, DataModel model, String username, String password) throws UnirestException {
+    static public void login(UserCallback userCallback, DataModel model, String username, String password) throws UnirestException {
         CredentialsProvider cp = new BasicCredentialsProvider();
         cp.setCredentials(
                 new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
@@ -72,5 +32,45 @@ public class WebApiRequest {
 
         GetRequest result = Unirest.get(rootUrl + "/login");
         userCallback.loginCallback(model, result.asJson().getBody());
+    }
+
+    static public void ping(Callback<String> pingCallback) {
+        Unirest.get(rootUrl + "/ping")
+                .asStringAsync(pingCallback);
+    }
+
+    static public void getChapters(Callback<JsonNode> getChaptersCallback) {
+        Unirest.get(rootUrl + "/chapters")
+                .asJsonAsync(getChaptersCallback);
+    }
+
+    static public void getChapter(Callback<JsonNode> getChapterCallback, int id) {
+        Unirest.get(rootUrl + "/chapters/" + id)
+                .asJsonAsync(getChapterCallback);
+    }
+
+    static public void getStory(Callback<JsonNode> getStory, int id) {
+        Unirest.get(rootUrl + "/stories/" + id)
+                .asJsonAsync(getStory);
+    }
+
+    static public void getStories(Callback<JsonNode> getStories) {
+        Unirest.get(rootUrl + "/stories")
+                .asJsonAsync(getStories);
+    }
+
+    static public void getPlugin(Callback<JsonNode> getPlugin, int id) {
+        Unirest.get(rootUrl + "/plugins/" + id)
+                .asJsonAsync(getPlugin);
+    }
+
+    static public void getPlugins(Callback<JsonNode> getPlugins) {
+        Unirest.get(rootUrl + "/plugins")
+                .asJsonAsync(getPlugins);
+    }
+
+    static public void getUser(Callback<JsonNode> getUser, int id) {
+        Unirest.get(rootUrl + "/users/" + id)
+                .asJsonAsync(getUser);
     }
 }

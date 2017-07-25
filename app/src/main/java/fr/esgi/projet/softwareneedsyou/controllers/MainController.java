@@ -1,6 +1,10 @@
 package fr.esgi.projet.softwareneedsyou.controllers;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+import fr.esgi.projet.softwareneedsyou.callbacks.UserCallback;
 import fr.esgi.projet.softwareneedsyou.models.DataModel;
+import fr.esgi.projet.softwareneedsyou.webApi.WebApiRequest;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
@@ -9,6 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class MainController {
+    HomeController homeController;
+    StoreController storeController;
+    ChaptersController chaptersController;
+    GameController gameController;
+    @FXML
+    private AnchorPane mainViewAnchorPane;
     @FXML
     private Tab homeTab;
     @FXML
@@ -17,10 +27,6 @@ public class MainController {
     private Tab chaptersTab;
     @FXML
     private Tab gameTab;
-    HomeController homeController;
-    StoreController storeController;
-    ChaptersController chaptersController;
-    GameController gameController;
     private DataModel model;
 
     @FXML
@@ -52,9 +58,24 @@ public class MainController {
         }
         this.model = model;
 
+        WebApiRequest war = new WebApiRequest();
+        try {
+            war.login(new UserCallback(), model, "brick", "iliketrains");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+
         homeController.initModel(model);
         storeController.initModel(model);
         chaptersController.initModel(model);
         gameController.initModel(model);
+    }
+
+    public void handleCloseAction(ActionEvent actionEvent) {
+        mainViewAnchorPane.getScene().getWindow().hide();
+    }
+
+    public void handleAboutAction(ActionEvent actionEvent) {
+
     }
 }

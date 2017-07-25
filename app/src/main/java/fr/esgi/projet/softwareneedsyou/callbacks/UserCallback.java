@@ -33,7 +33,9 @@ public class UserCallback {
     }
 
     public void loginCallback(DataModel model, JsonNode user){
-        model.setUser(new Gson().fromJson(user.toString(), UserModel.class));
+        if(user.isArray()) {
+            model.setUser(new Gson().fromJson(user.toString(), UserModel.class));
+        }
     }
 
 }
