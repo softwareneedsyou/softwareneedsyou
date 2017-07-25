@@ -4,7 +4,7 @@
 package fr.esgi.projet.softwareneedsyou.api.annotations;
 
 /**
- * @author Blixel
+ * @author Tristan
  *
  */
 public interface PluginTestInterf {

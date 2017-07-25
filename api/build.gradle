@@ -6,9 +6,9 @@
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
-version = '0.0.1'
+version = '0.0.2'
 description = 'The shared API for the application'
 
 dependencies {
-    compile group: 'org.kohsuke.metainf-services', name: 'metainf-services', version: '1.+'
+    //
 }

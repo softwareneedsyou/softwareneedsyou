@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.softwareneedsyou.org/HistorySchema" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:hst="http://www.softwareneedsyou.org/HistorySchema">
+
+    <simpleType name="stringCollaspe">
+        <annotation>
+        	<documentation>String with "Collapse Whitespace" restriction</documentation>
+        </annotation>
+        <restriction base="string">
+    		<whiteSpace value="collapse"></whiteSpace>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="stringNoEmpty">
+        <annotation>
+        	<documentation>Chaine de caractère non vide</documentation>
+        </annotation>
+        <restriction base="hst:stringCollaspe">
+    		<minLength value="1"></minLength>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="Content">
+    	<simpleContent>
+    		<extension base="hst:stringCollaspe">
+    			<attribute name="type" use="required">
+    				<simpleType>
+    					<restriction base="hst:stringNoEmpty">
+    						<enumeration value="text"></enumeration>
+    						<enumeration value="file"></enumeration>
+    					</restriction>
+    				</simpleType>
+    			</attribute>
+    		</extension>
+    	</simpleContent>
+    </complexType>
+
+    <complexType name="Test">
+    	<annotation>
+    		<documentation>
+    			Description d'un test contenu dans le fichier
+    		</documentation>
+    	</annotation>
+    	<attribute name="id" type="short" use="required"></attribute>
+    	<attribute name="name" type="hst:stringNoEmpty"
+    		use="required">
+    	</attribute>
+    	<attribute name="resume" type="hst:stringNoEmpty" use="optional"></attribute>
+    </complexType>
+
+    <complexType name="Story">
+    	<annotation>
+    		<documentation>Niveau d'une histoire</documentation>
+    	</annotation>
+    	<all>
+    		<element name="description" type="hst:Content" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="resume" type="hst:Content" maxOccurs="1"
+    			minOccurs="0">
+    			<annotation>
+    				<documentation>
+    					Courte description du niveau
+    				</documentation>
+    			</annotation>
+    		</element>
+    		<element name="tests" minOccurs="1" maxOccurs="1">
+    			<complexType>
+    				<sequence>
+    					<element name="test" type="hst:Test" minOccurs="0" maxOccurs="unbounded"></element>
+    				</sequence>
+    				<attribute name="file" type="hst:stringNoEmpty"></attribute>
+    			</complexType>
+    		</element>
+    	</all>
+    	<attribute name="name" type="hst:stringNoEmpty"
+    		use="required">
+    		<annotation>
+    			<documentation>Titre du niveau</documentation>
+    		</annotation>
+    	</attribute>
+    </complexType>
+
+    <element name="chapter">
+    	<complexType>
+    		<all maxOccurs="1" minOccurs="1">
+    			<element name="title" type="hst:stringNoEmpty"
+    				maxOccurs="1" minOccurs="1">
+    				<annotation>
+    					<documentation>Titre du plugin</documentation>
+    				</annotation>
+    			</element>
+    			<element name="description" type="hst:Content"
+    				maxOccurs="1" minOccurs="0">
+    				<annotation>
+    					<documentation>
+    						Description de l'histoire
+    					</documentation>
+    				</annotation>
+    			</element>
+    			<element name="stories" maxOccurs="1" minOccurs="1">
+    				<annotation>
+    					<documentation>
+    						Liste des niveaux composant l'histoire
+    					</documentation>
+    				</annotation>
+    				<complexType>
+    					<sequence>
+    						<element name="story" type="hst:Story"
+    							maxOccurs="unbounded" minOccurs="1">
+    						</element>
+    					</sequence>
+    				</complexType>
+    			</element>
+    		</all>
+    		<attribute name="compiler" type="hst:stringNoEmpty" use="required">
+    			<annotation>
+    				<documentation>UUID du compilateur compatible</documentation>
+    			</annotation></attribute>
+    	</complexType>
+    </element>
+</schema>

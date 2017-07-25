@@ -43,8 +43,20 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+<<<<<<< HEAD
 
 # idea ignores
 .idea/*
 !.idea/misc.xml
 !.idea/modules.xml
+
+/.project
+/.settings/org.eclipse.buildship.core.prefs
+/api/.classpath
+/api/.gitignore
+/api/.project
+/api/.settings/org.eclipse.buildship.core.prefs
+/app/.classpath
+/app/.gitignore
+/app/.project
+/app/.settings/org.eclipse.buildship.core.prefs

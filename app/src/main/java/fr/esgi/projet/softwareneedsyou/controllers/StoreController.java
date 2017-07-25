@@ -61,12 +61,13 @@ public class StoreController {
 
     @FXML
     public void handleOnRowClickAction(MouseEvent e) {
-        PluginModel currentPlugin = (PluginModel) pluginsTableView.getFocusModel().getFocusedItem();
-        model.setCurrentPlugin(currentPlugin);
-        pluginNameProperty.setValue(currentPlugin.getName());
-        pluginDescriptionProperty.setValue(currentPlugin.getDescription());
-        downloadButton.setVisible(true);
-        System.out.println(currentPlugin);
+        if(pluginsTableView.getFocusModel().getFocusedItem() != null){
+            PluginModel currentPlugin = (PluginModel) pluginsTableView.getFocusModel().getFocusedItem();
+            model.setCurrentPlugin(currentPlugin);
+            pluginNameProperty.setValue(currentPlugin.getName());
+            pluginDescriptionProperty.setValue(currentPlugin.getDescription());
+            downloadButton.setVisible(true);
+        }
     }
 
     public void initModel(DataModel model) {
