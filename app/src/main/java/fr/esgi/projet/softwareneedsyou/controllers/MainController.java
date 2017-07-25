@@ -58,13 +58,6 @@ public class MainController {
         }
         this.model = model;
 
-        WebApiRequest war = new WebApiRequest();
-        try {
-            war.login(new UserCallback(), model, "brick", "iliketrains");
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-
         homeController.initModel(model);
         storeController.initModel(model);
         chaptersController.initModel(model);

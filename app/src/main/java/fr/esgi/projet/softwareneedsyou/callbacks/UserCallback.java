@@ -5,13 +5,12 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.GetRequest;
 import fr.esgi.projet.softwareneedsyou.models.DataModel;
 import fr.esgi.projet.softwareneedsyou.models.UserModel;
 
 public class UserCallback {
 
-    public Callback<JsonNode> getUserCallback(DataModel model){
+    public Callback<JsonNode> getUserCallback(DataModel model) {
         return new Callback<JsonNode>() {
             @Override
             public void completed(HttpResponse<JsonNode> response) {
@@ -32,10 +31,8 @@ public class UserCallback {
         };
     }
 
-    public void loginCallback(DataModel model, JsonNode user){
-        if(user.isArray()) {
-            model.setUser(new Gson().fromJson(user.toString(), UserModel.class));
-        }
+    public void loginCallback(DataModel model, JsonNode user) {
+        model.setUser(new Gson().fromJson(user.toString(), UserModel.class));
     }
 
 }
