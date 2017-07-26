@@ -62,6 +62,7 @@ public class MainController {
         homeController.initModel(model);
         storeController.initModel(model);
         chaptersController.initModel(model);
+        chaptersController.getGameController(gameController);
         gameController.initModel(model);
     }
 

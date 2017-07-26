@@ -83,7 +83,7 @@ public class FileHistoryPlugin implements PluginHistory {
 	 */
 	public FileHistoryPlugin() {
 		if(Files.notExists(AppHistoriesFolder)) {
-			System.out.println("// create folder plugin");
+			//System.out.println("// create folder plugin");
 			try {
 				Files.createDirectory(AppHistoriesFolder);
 			} catch (IOException e) {
@@ -116,11 +116,11 @@ public class FileHistoryPlugin implements PluginHistory {
 	}
 	
 	private final Collection<Chapter> loadHistories(@NonNull final Path folder) {
-		System.out.println("// load histories in " + folder);
+		//System.out.println("// load histories in " + folder);
 		try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(folder, "*"+HistoryExtension)) {
-			dirStream.forEach(p -> {System.out.println("// e_ "+p); this.histories.computeIfAbsent(p, f -> {Chapter c=readHistories(f); System.out.println(c); return c;});});
+			dirStream.forEach(p -> {System.out.println(""); this.histories.computeIfAbsent(p, f -> {Chapter c=readHistories(f); System.out.println(""); return c;});});
 			this.histories.forEach((p, h) -> {if(Objects.isNull(h)) this.histories.remove(p);});
-			this.histories.forEach((k, v) -> System.out.println(k+" , "+v));
+			//this.histories.forEach((k, v) -> System.out.println(k+" , "+v));
 			return this.histories.values();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -137,8 +137,8 @@ public class FileHistoryPlugin implements PluginHistory {
 	}
 	
 	private final static Chapter readHistory(@NonNull final URI file) {
-		System.out.println("// open history " + file);
-		System.out.println("// a: "+file.getAuthority()+" ; p: "+file.getPath()+" ; q: "+file.getQuery()+" ; f: "+file.getFragment());
+		//System.out.println("// open history " + file);
+		//System.out.println("// a: "+file.getAuthority()+" ; p: "+file.getPath()+" ; q: "+file.getQuery()+" ; f: "+file.getFragment());
 		try(final FileSystem zipfs = FileSystems.newFileSystem(URI.create("jar:"+file.toString()), zip_properties)) {
 			@NonNull final Path path = zipfs.getPath("/index.xml");
 			try(@NonNull final InputStream root = Files.newInputStream(path, StandardOpenOption.READ)) {
@@ -167,7 +167,7 @@ public class FileHistoryPlugin implements PluginHistory {
 											history.getElementsByTag("title").first().text(),
 											Optional.ofNullable(loadContentNode(fs, history.getElementsByTag("description").first())),
 											LStoryFromStories(fs, history.select("stories").first()));
-		System.out.println(c);
+		//System.out.println(c);
 		return c;
 	}
 	
@@ -293,7 +293,7 @@ public class FileHistoryPlugin implements PluginHistory {
 	
 	private final static void validateXML(@NonNull final InputStream in) throws SAXException, IOException {
 		@NonNull final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		System.out.println(Chapter.class.getClassLoader().getResource("HistorySchema.xsd"));
+		//System.out.println(Chapter.class.getClassLoader().getResource("HistorySchema.xsd"));
 		@NonNull final Schema schema = factory.newSchema(Chapter.class.getClassLoader().getResource("HistorySchema.xsd"));
 		@NonNull final Validator validator = schema.newValidator();
 		validator.validate(new StreamSource(in));

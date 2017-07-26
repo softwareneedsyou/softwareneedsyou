@@ -1,15 +1,17 @@
 package fr.esgi.projet.softwareneedsyou.models;
 
+import fr.esgi.projet.softwareneedsyou.api.history.Chapter;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class DataModel {
 
     private PingModel pong;
-    private ChapterModel currentChapter;
+    private Collection<Chapter> currentChapter;
     private StoryModel currentStory;
     private ArrayList<ChapterModel> chapters = new ArrayList<ChapterModel>();
     private ObservableList<ChapterModel> chaptersList = FXCollections.observableList(chapters);
@@ -62,7 +64,6 @@ public class DataModel {
     }
 
     public DataModel() {
-        setCurrentChapter(this.currentChapter);
         setCurrentStory(this.currentStory);
     }
 
@@ -70,9 +71,11 @@ public class DataModel {
         return plugins;
     }
 
+    /*
     public ArrayList<ChapterModel> getChapters() {
         return this.chapters;
     }
+    */
 
     public void setChapters(ArrayList<ChapterModel> chapters) {
         this.chapters = chapters;
@@ -99,11 +102,11 @@ public class DataModel {
         this.currentStory = currentStory;
     }
 
-    public ChapterModel getCurrentChapter() {
+    public Collection<Chapter> getCurrentChapter() {
         return currentChapter;
     }
 
-    public void setCurrentChapter(ChapterModel currentChapter) {
+    public void setCurrentChapter(Collection<Chapter> currentChapter) {
         this.currentChapter = currentChapter;
     }
 
