@@ -30,7 +30,7 @@ public class ResultCompiler {
 	 * @param compileSuccess
 	 */
 	public ResultCompiler(final boolean compileSuccess) {
-		this(false, Collections.emptyMap());
+		this(compileSuccess, Collections.emptyMap());
 	}
 
 	/**
