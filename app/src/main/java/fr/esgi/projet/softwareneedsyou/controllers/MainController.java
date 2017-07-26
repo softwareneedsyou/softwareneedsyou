@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -18,6 +19,8 @@ public class MainController {
     StoreController storeController;
     ChaptersController chaptersController;
     GameController gameController;
+    @FXML
+    private TabPane panes;
     @FXML
     private AnchorPane mainViewAnchorPane;
     @FXML
@@ -63,6 +66,7 @@ public class MainController {
         storeController.initModel(model);
         chaptersController.initModel(model);
         chaptersController.getGameController(gameController);
+        chaptersController.getMainController(this);
         gameController.initModel(model);
     }
 
@@ -72,5 +76,9 @@ public class MainController {
 
     public void handleAboutAction(ActionEvent actionEvent) {
 
+    }
+
+    public void switchGamePane() {
+        panes.getSelectionModel().select(gameTab);
     }
 }

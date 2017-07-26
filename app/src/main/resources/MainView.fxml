@@ -31,7 +31,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane fx:id="panes" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab fx:id="homeTab" text="Accueil" />
                 <Tab fx:id="storeTab" text="Store" />
