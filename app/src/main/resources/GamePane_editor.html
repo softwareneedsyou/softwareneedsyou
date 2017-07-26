@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>SNY - Code editor</title>
+        <script src="./codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="./codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="./codemirror/addon/hint/show-hint.css">
+        <script src="./codemirror/addon/hint/show-hint.js"></script>
+        <script src="./codemirror/addon/hint/xml-hint.js"></script>
+        <script src="./codemirror/addon/hint/html-hint.js"></script>
+        <script src="./codemirror/mode/xml/xml.js"></script>
+        <script src="./codemirror/mode/javascript/javascript.js"></script>
+        <script src="./codemirror/mode/css/css.js"></script>
+        <script src="./codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="./codemirror/mode/python/python.js"></script>
+    </head>
+    <body>
+        <div id="code" name="code"></div>
+        <script type="text/javascript">
+            var editor;
+            function prevw() {
+                console.log(editor.getValue());
+            }
+            window.onload = function() {
+                editor = CodeMirror(document.getElementById("code"), {
+                    //mode: "text/html",
+                    mode: {name: "python", globalVars: true},
+                    extraKeys: {"Ctrl-Space": "autocomplete"},
+                    lineNumbers: true,
+                    indentUnit: 4,
+                    //value: document.documentElement.innerHTML
+                });
+                var delay;
+                editor.on("change", function(cm, obj) {
+                    clearTimeout(delay);
+                    delay = setTimeout(prevw, 500);
+                });
+                setTimeout(prevw, 500);
+            };
+        </script>
+    </body>
+</html>

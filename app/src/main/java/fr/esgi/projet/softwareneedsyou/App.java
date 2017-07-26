@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -15,12 +16,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class App extends Application {
+    public final static void main(final String[] args) {
+        launch(args);
+    }
 
 
 
     @Override
-
-    public void start(Stage stage) throws Exception {
+    public void start(final Stage stage) throws Exception {
 
         init_app();
 
@@ -34,6 +37,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Software Needs You");
+        stage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("app_ico.jpg")));
         stage.setScene(scene);
         stage.show();
     }
