@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
@@ -46,8 +47,8 @@ public class MainController {
         chaptersController = chaptersLoader.getController();
         chaptersTab.setContent(chaptersAnchorPane);
 
-        FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/GameAnchorPane.fxml"));
-        AnchorPane gameAnchorPane = gameLoader.load();
+        FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/GamePane.fxml"));
+        BorderPane gameAnchorPane = gameLoader.load();
         gameController = gameLoader.getController();
         gameTab.setContent(gameAnchorPane);
     }
