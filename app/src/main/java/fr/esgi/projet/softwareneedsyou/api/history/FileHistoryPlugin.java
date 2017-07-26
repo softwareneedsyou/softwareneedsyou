@@ -34,6 +34,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -210,6 +211,14 @@ public class FileHistoryPlugin implements PluginHistory {
 															@NonNull final Set<Test> tests) {
 		return new Story() {
 			//private final Set<Test> ltests = new HashSet<>(Arrays.asList(tests));
+			@NonNull private byte[] ftests;
+			{
+				try(final InputStream is = Files.newInputStream(test, StandardOpenOption.READ)) {
+					this.ftests = IOUtils.toByteArray(is);
+				} catch(IOException e) {
+					this.ftests = new byte[0];
+				}
+			}
 			
 			@Override
 			public String getTitle() {
@@ -227,8 +236,8 @@ public class FileHistoryPlugin implements PluginHistory {
 			}
 			
 			@Override
-			public Path getFileTest() {
-				return test;
+			public byte[] getFileTest() {
+				return ftests;
 			}
 			
 			@Override
