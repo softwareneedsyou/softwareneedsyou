@@ -31,6 +31,7 @@ public class ChaptersController {
     private ObservableList<Chapter> phobs;
     private Map<PluginHistoryDeclare, Collection<Chapter>> histories;
     private GameController gameController;
+    private MainController mainController;
 
     @FXML
     public void initialize() {
@@ -46,6 +47,7 @@ public class ChaptersController {
             Button rowButton = (Button) row.getChildren().get(1);
             rowButton.setOnAction(actionEvent -> {
                 gameController.initGame(currentChapter,story);
+                mainController.switchGamePane();
             });
             row.setStoryName(story.getTitle());
             storiesVBox.getChildren().add(row);
@@ -78,5 +80,9 @@ public class ChaptersController {
 
     public void getGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+
+    public void getMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }
