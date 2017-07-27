@@ -21,6 +21,7 @@ import java.util.Map;
 public class ChaptersController {
     ArrayList<Story> stories = new ArrayList<>();
     ArrayList<Chapter> chapters = new ArrayList<>();
+    ArrayList<StoryRow> rows = new ArrayList<>();
     @FXML
     private ListView<Chapter> chaptersListView;
     @FXML
@@ -39,20 +40,21 @@ public class ChaptersController {
     }
 
     public void handleOnRowClickAction(MouseEvent e) {
-        Chapter currentChapter = chaptersListView.getFocusModel().getFocusedItem();
-        stories.addAll(currentChapter.getStories());
         storiesVBox.getChildren().clear();
-        for (Story story : stories) {
+        rows.clear();
+        Chapter currentChapter = chaptersListView.getSelectionModel().getSelectedItem();
+        for (Story story : currentChapter.getStories()) {
             StoryRow row = new StoryRow();
             Button rowButton = (Button) row.getChildren().get(1);
             rowButton.setOnAction(actionEvent -> {
-                gameController.initGame(currentChapter,story);
+                gameController.initGame(currentChapter, story);
                 mainController.switchGamePane();
             });
             row.setStoryName(story.getTitle());
-            storiesVBox.getChildren().add(row);
+            rows.add(row);
             VBox.setVgrow(row, Priority.NEVER);
         }
+        storiesVBox.getChildren().setAll(rows);
     }
 
     public void initModel(DataModel model) {
