@@ -12,8 +12,10 @@ import fr.esgi.projet.softwareneedsyou.api.ConsoleOutput;
 import fr.esgi.projet.softwareneedsyou.api.compiler.CompilerException;
 import fr.esgi.projet.softwareneedsyou.api.compiler.CompilerLoader;
 import fr.esgi.projet.softwareneedsyou.api.compiler.PluginCompiler;
+import fr.esgi.projet.softwareneedsyou.api.compiler.ResultCompiler;
 import fr.esgi.projet.softwareneedsyou.api.history.Chapter;
 import fr.esgi.projet.softwareneedsyou.api.history.Story;
+import fr.esgi.projet.softwareneedsyou.api.history.Test;
 import fr.esgi.projet.softwareneedsyou.api.spi.PluginException;
 import fr.esgi.projet.softwareneedsyou.models.DataModel;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,7 +35,7 @@ public class GameController implements Initializable {
 	@FXML private TextArea codeEditor;
 	@FXML private TextFlow descriptionContent;
 	@FXML private TextArea console;
-	@FXML private TableView<?> tests;
+	@FXML private TableView<Test> tests;
 	private DataModel model;
 	private StringProperty descriptionProperty;
 	private StringProperty titleProperty;
@@ -64,7 +66,7 @@ public class GameController implements Initializable {
 		descriptionProperty.setValue(story.getContent());
 		console.clear();
 		codeEditor.clear();
-
+		this.tests.getItems().addAll(this.story.getTests());
 
 		this.cl.getCompilersloader().getImplementations().forEach(System.out::println);
 		try {
@@ -91,7 +93,7 @@ public class GameController implements Initializable {
 		this.console.setText(this.codeEditor.getText());
 		System.out.println(this.compiler);
 		try(InputStream inTest = new ByteArrayInputStream(this.story.getFileTest())) {
-			this.compiler.compileAndTest(this.codeEditor.getText(), inTest, new ConsoleOutput() {
+			ResultCompiler result = this.compiler.compileAndTest(this.codeEditor.getText(), inTest, new ConsoleOutput() {
 				@NonNull private final PrintWriter out = new PrintWriter(new Writer() {
 					@Override
 					public void write(char[] cbuf, int off, int len) throws IOException {
@@ -107,6 +109,9 @@ public class GameController implements Initializable {
 					return this.out;
 				}
 			});
+			this.console.setText("\n Compile success : "+ result.isCompileSuccess() +"\n");
+			//this.tests.getItems().clear();
+			//result.getTestsResults().forEach((id, t) -> this.tests.getItems().get(id));
 		} catch (IOException | CompilerException e) {
 			Arrays.asList(e.getStackTrace()).forEach(ste -> System.out.println(ste.toString()));
 			e.printStackTrace();
