@@ -1,50 +1,60 @@
 package fr.esgi.projet.softwareneedsyou.controllers;
 
-import fr.esgi.projet.softwareneedsyou.models.ChapterModel;
+import fr.esgi.projet.softwareneedsyou.api.history.*;
 import fr.esgi.projet.softwareneedsyou.models.DataModel;
-import fr.esgi.projet.softwareneedsyou.models.StoryModel;
-import fr.esgi.projet.softwareneedsyou.webApi.WebApiRequest;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.FocusModel;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import lombok.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 public class ChaptersController {
-    ArrayList<ChapterModel> chaptersArrayList;
-    ArrayList<StoryModel> storiesModelArrayList = new ArrayList<>();
+    ArrayList<Story> stories = new ArrayList<>();
+    ArrayList<Chapter> chapters = new ArrayList<>();
+    ArrayList<StoryRow> rows = new ArrayList<>();
     @FXML
-    private ListView<ChapterModel> chaptersListView;
+    private ListView<Chapter> chaptersListView;
     @FXML
     private VBox storiesVBox;
+    @FXML
+    private AnchorPane chapterPane;
     private DataModel model;
-    private ObservableList<ChapterModel> chaptersObservableList;
+    private ObservableList<Chapter> phobs;
+    private Map<PluginHistoryDeclare, Collection<Chapter>> histories;
+    private GameController gameController;
+    private MainController mainController;
 
     @FXML
     public void initialize() {
-        chaptersListView.setItems(chaptersObservableList);
-        chaptersObservableList = FXCollections.observableArrayList();
-
-        for (StoryModel story : storiesModelArrayList) {
-            StoryRow row = new StoryRow();
-            row.setStoryName(story.getName());
-            storiesVBox.getChildren().add(row);
-            VBox.setVgrow(row, Priority.NEVER);
-        }
+        phobs = FXCollections.observableArrayList();
     }
 
-    public void handleOnRowClickAction(MouseEvent e){
-        ChapterModel currentChapter = chaptersListView.getFocusModel().getFocusedItem();
-        model.setCurrentChapter(currentChapter);
+    public void handleOnRowClickAction(MouseEvent e) {
+        storiesVBox.getChildren().clear();
+        rows.clear();
+        Chapter currentChapter = chaptersListView.getSelectionModel().getSelectedItem();
+        for (Story story : currentChapter.getStories()) {
+            StoryRow row = new StoryRow();
+            Button rowButton = (Button) row.getChildren().get(1);
+            rowButton.setOnAction(actionEvent -> {
+                gameController.initGame(currentChapter, story);
+                mainController.switchGamePane();
+            });
+            row.setStoryName(story.getTitle());
+            rows.add(row);
+            VBox.setVgrow(row, Priority.NEVER);
+        }
+        storiesVBox.getChildren().setAll(rows);
     }
 
     public void initModel(DataModel model) {
@@ -53,22 +63,28 @@ public class ChaptersController {
         }
         this.model = model;
 
-        chaptersArrayList = new ArrayList<>();
-
-        chaptersObservableList.addListener((ListChangeListener.Change<? extends ChapterModel> change) -> {
-            chaptersListView.setItems((ObservableList<ChapterModel>) change.getList());
-        });
-
-        chaptersObservableList.setAll(chaptersArrayList);
-
+        @NonNull final HistoryLoader hl = new HistoryLoader();
+        hl.loadAllPlugins();
+        histories = hl.getHistories();
+        for (Collection<Chapter> c : histories.values()) {
+            chapters.addAll(c);
+        }
+        phobs.addAll(chapters);
+        chaptersListView.setItems(phobs);
     }
 
     public void handleRefreshAction(ActionEvent actionEvent) {
     }
 
     public void handleLoadAction(ActionEvent actionEvent) {
-        ChapterModel chapterone = new ChapterModel("this is the first chapter", "welcome to this chapter!");
-        chaptersArrayList.add(chapterone);
-        chaptersObservableList.setAll(chaptersArrayList);
+
+    }
+
+    public void getGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
+    public void getMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }

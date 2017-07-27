@@ -36,7 +36,7 @@ public interface Story {
 	 * Contenu des tests (dépendant du compilateur)
 	 * @return fichier contenant les tests
 	 */
-	Path getFileTest();
+	byte[] getFileTest();
 	
 	/**
 	 * Liste des tests du niveau

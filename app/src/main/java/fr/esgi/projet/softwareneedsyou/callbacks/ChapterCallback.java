@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class ChapterCallback {
 
+    /*
     public Callback<JsonNode> getChapterCallback(DataModel model){
         return new Callback<JsonNode>() {
             @Override
@@ -58,5 +59,6 @@ public class ChapterCallback {
             }
         };
     }
+    */
 
 }

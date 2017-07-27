@@ -64,18 +64,11 @@ public abstract class Chapter {
 	 */
 	@Override
 	public String toString() {
-		return "Chapter [getCompiler()=" + getCompiler() + ", getTitle()=" + getTitle() + ", getResume()=" + getResume()
-				+ ", getStories()=" + getStories() + "]";
+		return this.getTitle();
 	}
 
 	@Override
-	public boolean equals(@NonNull final Object other) {
-		if(super.equals(other))
-			return true;
-		else if((other instanceof Chapter)) {
-			final Chapter hist = (Chapter) other;
-			return this.getCompiler().equals(hist.getCompiler()) && this.getTitle().equals(hist.getTitle()) && this.getResume().equals(hist.getResume());
-		} else
-			return false;
+	public boolean equals(Object o) {
+		return super.equals(o);
 	}
 }
