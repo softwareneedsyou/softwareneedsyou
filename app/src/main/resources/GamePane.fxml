@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.projet.softwareneedsyou.controllers.GameController">
+   <center>
+      <SplitPane dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL">
+         <items>
+            <SplitPane dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <items>
+                  <TextArea fx:id="codeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Your code here, please">
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
+                  </TextArea>
+                  <TextFlow id="content_level" fx:id="descriptionContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </items>
+            </SplitPane>
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Console">
+                     <content>
+                        <TextArea id="console_text" fx:id="console" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                           <font>
+                              <Font name="Lucida Console" size="12.0" />
+                           </font>
+                        </TextArea>
+                     </content>
+                </Tab>
+                <Tab text="Tests">
+                     <content>
+                        <TableView fx:id="tests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </items>
+      </SplitPane>
+   </center>
+   <top>
+      <ToolBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onAction="#handleTestAction" text="Test" />
+        </items>
+      </ToolBar>
+   </top>
+</BorderPane>

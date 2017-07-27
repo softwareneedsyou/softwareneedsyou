@@ -1,0 +1,62 @@
+.fond {
+-fx-background-color : rgb(1,10,19);
+    
+}
+
+.button{
+-fx-background-color : rgb(30,40,45);
+-fx-border-color : rgb(205,190,145);
+-fx-border-style : solid;
+-fx-border-width : 2px;
+-fx-text-fill : #079488;
+}
+
+#fontBack {
+-fx-border-color : rgb(30,40,45);
+-fx-border-style : solid;
+-fx-border-width : 5px;
+
+}
+
+.nav {
+-fx-border-color : rgb(205,190,145);
+-fx-border-style : solid;
+-fx-border-width : 2px;
+-fx-padding : 10px;
+
+}
+
+.cadre {
+-fx-background-color : rgb(30,40,45);
+-fx-border-color : rgb(205,190,145);
+-fx-border-style : solid;
+-fx-border-width : 2px;
+
+}
+
+.generalcadre {
+-fx-border-color : rgb(30,40,45);
+-fx-border-style : solid;
+-fx-border-width : 5px;
+
+}
+
+.simplelabel {
+-fx-text-fill : #ffffff;
+-fx-font-size: 14pt;
+}
+
+.titlelabel {
+-fx-text-fill : #ffffff;
+-fx-font-size: 20pt;
+}
+
+.text-area {
+text-area-background: rgb(30,40,45);
+-fx-text-fill: #ffffff;
+}
+
+.text-area .content {
+-fx-background-color: text-area-background ;
+
+}
