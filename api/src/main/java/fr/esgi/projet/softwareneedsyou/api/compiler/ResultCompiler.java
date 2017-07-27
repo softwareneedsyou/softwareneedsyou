@@ -6,6 +6,7 @@ package fr.esgi.projet.softwareneedsyou.api.compiler;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class ResultCompiler {
 	 * @param compileSuccess
 	 */
 	public ResultCompiler(final boolean compileSuccess) {
-		this(compileSuccess, Collections.emptyMap());
+		this(compileSuccess, new HashMap<>());
 	}
 
 	/**
