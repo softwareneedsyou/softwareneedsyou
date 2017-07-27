@@ -110,6 +110,8 @@ public class GameController implements Initializable {
 				}
 			});
 			this.console.setText("\n Compile success : "+ result.isCompileSuccess() +"\n");
+			this.console.appendText("Tests :\n");
+			result.getTestsResults().forEach((id, t) -> this.console.appendText("\t"+id+" = "+t.getState()+" : "+t.getDetail()+"\n"));
 			//this.tests.getItems().clear();
 			//result.getTestsResults().forEach((id, t) -> this.tests.getItems().get(id));
 		} catch (IOException | CompilerException e) {
